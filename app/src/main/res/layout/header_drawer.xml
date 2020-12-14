@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/size180dp"
+    android:background="@drawable/backgroundheader">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/size20dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/logo"
+
+            android:layout_width="@dimen/size100dp"
+            android:layout_height="@dimen/size100dp"
+            android:src="@drawable/logo"></ImageView>
+
+        <TextView
+            android:layout_marginTop="@dimen/size10dp"
+            android:textColor="@color/white"
+            android:id="@+id/txtTenNguoiDungDrawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:text="Thai xuan hien"
+            android:textSize="@dimen/size20sp"
+            android:textStyle="bold">
+
+        </TextView>
+    </LinearLayout>
+
+</RelativeLayout>

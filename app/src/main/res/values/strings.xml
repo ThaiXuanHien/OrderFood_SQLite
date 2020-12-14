@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">OrderFood_SQLite</string>
+    <string name="Mo">Mở</string>
+    <string name="Dong">Đóng</string>
+    <string name="themThucDon">Thêm thực đơn</string>
+    <string name="themBanAn">Thêm bàn ăn</string>
+    <string name="trangChu">Trang chủ</string>
+    <string name="thucDon">Thực đơn</string>
+    <string name="themLoaiThucDon">Thêm loại thực đơn</string>
+</resources>

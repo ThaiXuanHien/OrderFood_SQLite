@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="@dimen/size5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/txtTenItemBanAn"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/size20sp"
+        android:text="Tên bàn ăn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </TextView>
+    <ImageView
+        android:layout_below="@id/txtTenItemBanAn"
+        android:id="@+id/imgItemBanAn"
+        android:src="@drawable/banan"
+        android:layout_width="@dimen/size100dp"
+        android:layout_height="@dimen/size100dp">
+
+    </ImageView>
+    <ImageView
+        android:visibility="invisible"
+        android:layout_margin="@dimen/size5dp"
+        android:src="@drawable/goimon"
+        android:layout_below="@id/imgItemBanAn"
+        android:id="@+id/imgGoiMonItemBanAn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+    <ImageView
+        android:visibility="invisible"
+        android:layout_margin="@dimen/size5dp"
+        android:src="@drawable/thanhtoan"
+        android:layout_toRightOf="@id/imgGoiMonItemBanAn"
+        android:layout_below="@id/imgItemBanAn"
+        android:id="@+id/imgThanhToanItemBanAn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+    <ImageView
+        android:visibility="invisible"
+        android:layout_margin="@dimen/size5dp"
+        android:src="@drawable/hide"
+        android:layout_toRightOf="@id/imgThanhToanItemBanAn"
+        android:layout_below="@id/imgItemBanAn"
+        android:id="@+id/imgHideItemBanAn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ImageView>
+</RelativeLayout>
