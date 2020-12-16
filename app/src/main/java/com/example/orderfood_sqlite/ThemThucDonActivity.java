@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.orderfood_sqlite.adapter.LoaiThucDonAdapter;
+import com.example.orderfood_sqlite.adapter.LoaiThucDonAdapterSpinner;
 import com.example.orderfood_sqlite.dao.LoaiThucDonDAO;
 import com.example.orderfood_sqlite.dao.ThucDonDAO;
 import com.example.orderfood_sqlite.dto.LoaiThucDonDTO;
@@ -26,12 +26,13 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
     private static final int REQUEST_CODE_THEMLOAITD = 123;
     private static final int REQUEST_CODE_OPEN_GALLERY = 234;
 
+
     ImageView imgThemLoaiThucDon, imgThucDon, imgGallery;
     Spinner spinnerLoaiThucDon;
     LoaiThucDonDAO loaiThucDonDAO;
     ThucDonDAO thucDonDAO;
     List<LoaiThucDonDTO> loaiThucDonDTOList;
-    LoaiThucDonAdapter loaiThucDonAdapter;
+    LoaiThucDonAdapterSpinner loaiThucDonAdapter;
     TextInputLayout inputLayoutTenThucDon, inputLayoutGiaThucDon;
     Button btnDongYThemThucDon, btnHuyThemThucDon;
 
@@ -67,7 +68,7 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
 
     public void hienThiLoaiThucDonSpinner() {
         loaiThucDonDTOList = loaiThucDonDAO.LayDanhSachLoaiThucDon();
-        loaiThucDonAdapter = new LoaiThucDonAdapter(this, R.layout.custom_spinner_loaithucdon, loaiThucDonDTOList);
+        loaiThucDonAdapter = new LoaiThucDonAdapterSpinner(this, R.layout.custom_spinner_loaithucdon, loaiThucDonDTOList);
         spinnerLoaiThucDon.setAdapter(loaiThucDonAdapter);
         loaiThucDonAdapter.notifyDataSetChanged();
     }
@@ -84,29 +85,35 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
             case R.id.imgGallery:
                 Intent intentOpenGallery = new Intent();
                 intentOpenGallery.setType("image/*");
-                intentOpenGallery.setAction(Intent.ACTION_GET_CONTENT);
+                intentOpenGallery.setAction(Intent.ACTION_OPEN_DOCUMENT);
                 startActivityForResult(Intent.createChooser(intentOpenGallery, "Chọn Folder"), REQUEST_CODE_OPEN_GALLERY);
                 break;
             case R.id.btnDongYThemThucDon:
 
                 int viTri = spinnerLoaiThucDon.getSelectedItemPosition();
-                int maLoaiThucDon = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
+
                 String tenThucDon = inputLayoutTenThucDon.getEditText().getText().toString().trim();
                 String giaTien = inputLayoutGiaThucDon.getEditText().getText().toString().trim();
 
-                if (!tenThucDon.isEmpty() && !giaTien.isEmpty() && !tenThucDon.equals("")) {
+                if (!tenThucDon.isEmpty() && !giaTien.isEmpty() && !tenThucDon.equals("") && duongDanHinh != null) {
                     ThucDonDTO monAnDTO = new ThucDonDTO();
                     monAnDTO.setGiaTien(giaTien);
                     monAnDTO.setHinhAnh(duongDanHinh);
+                    int maLoaiThucDon = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
                     monAnDTO.setMaLoaiThucDon(maLoaiThucDon);
                     monAnDTO.setTenThucDon(tenThucDon);
 
                     boolean kiemTra = thucDonDAO.themThucDon(monAnDTO);
-                    if (kiemTra) {
-                        Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent iThemTD = new Intent();
+                    iThemTD.putExtra("themThucDon", kiemTra);
+                    setResult(Activity.RESULT_OK, iThemTD);
+
+//                    if (kiemTra) {
+//                        Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+//                    }
+                    finish();
 
                 } else {
                     Toast.makeText(this, "Lỗi chưa điền đầy đủ", Toast.LENGTH_SHORT).show();

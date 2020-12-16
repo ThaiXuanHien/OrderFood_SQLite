@@ -5,30 +5,43 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imgItemLoaiThucDon"
+        android:id="@+id/imgItemThucDon"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size250dp"
         android:background="@drawable/backgroundheader"
         android:scaleType="fitXY"
         />
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size50dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@color/backgroundtransparentGreen"
         >
 
         <TextView
             android:layout_margin="@dimen/size5dp"
+
             android:textColor="@color/colorWhite"
-            android:id="@+id/txtTenLoaiThucDon"
+            android:id="@+id/txtTenThucDon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center|left"
             android:textSize="@dimen/size20sp"
             android:textStyle="bold"
             />
-    </FrameLayout>
+        <TextView
+            android:layout_margin="@dimen/size5dp"
+            android:textColor="@color/colorWhite"
+
+            android:id="@+id/txtGiaThucDon"
+            android:textSize="@dimen/size18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
 
 </FrameLayout>

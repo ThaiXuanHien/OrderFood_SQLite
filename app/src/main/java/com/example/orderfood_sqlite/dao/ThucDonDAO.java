@@ -2,10 +2,14 @@ package com.example.orderfood_sqlite.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.orderfood_sqlite.database.CreateDatabase;
 import com.example.orderfood_sqlite.dto.ThucDonDTO;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ThucDonDAO {
     SQLiteDatabase database;
@@ -28,6 +32,28 @@ public class ThucDonDAO {
         } else {
             return false;
         }
+
+    }
+
+    public List<ThucDonDTO> LayDanhSachThucDonTheoLoai(int maLoai) {
+        List<ThucDonDTO> monAnDTOs = new ArrayList<ThucDonDTO>();
+
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_MONAN + " WHERE " + CreateDatabase.TB_MONAN_MALOAI + " = '" + maLoai + "' ";
+        Cursor cursor = database.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ThucDonDTO monAnDTO = new ThucDonDTO();
+            monAnDTO.setHinhAnh(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_HINHANH)) + "");
+            monAnDTO.setTenThucDon(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_TENMONAN)));
+            monAnDTO.setGiaTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_GIATIEN)));
+            monAnDTO.setMaThucDon(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_MONAN_MAMON)));
+            monAnDTO.setMaLoaiThucDon(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_MONAN_MALOAI)));
+
+            monAnDTOs.add(monAnDTO);
+            cursor.moveToNext();
+        }
+
+        return monAnDTOs;
 
     }
 }

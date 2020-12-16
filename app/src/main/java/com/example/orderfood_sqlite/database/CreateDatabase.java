@@ -42,7 +42,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
     public static String TB_BANAN_TINHTRANG = "TINHTRANG";
 
     public static String TB_GOIMON_MAGOIMON = "MAGOIMON";
-    public static String TB_GOIMON_MANV = "MANV";
+    public static String TB_GOIMON_MANGUOIDUNG = "MANGUOIDUNG";
     public static String TB_GOIMON_NGAYGOI = "NGAYGOI";
     public static String TB_GOIMON_TINHTRANG = "TINHTRANG";
     public static String TB_GOIMON_MABAN = "MABAN";
@@ -57,9 +57,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        /*String tbNHANVIEN = "CREATE TABLE " + TB_NGUOIDUNG + " ( " + TB_NGUOIDUNG_MANGUOIDUNG + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TB_NGUOIDUNG_TAIKHOAN + " TEXT, " + TB_NGUOIDUNG_MATKHAU + " TEXT, " + TB_NGUOIDUNG_HOTEN + " TEXT, "
-                + TB_NGUOIDUNG_SDT + " TEXT, " + TB_NGUOIDUNG_GIOITINH + " INTEGER , " + TB_NGUOIDUNG_MAQUYEN + " INTEGER )";*/
+
 
         String tbNGUOIDUNG = "CREATE TABLE " + TB_NGUOIDUNG + " ( " + TB_NGUOIDUNG_MANGUOIDUNG + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TB_NGUOIDUNG_TAIKHOAN + " TEXT, " + TB_NGUOIDUNG_MATKHAU + " TEXT, " + TB_NGUOIDUNG_HOTEN + " TEXT, "
@@ -79,7 +77,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
                 + TB_QUYEN_TENQUYEN + " TEXT )";
 
         String tbGOIMON = "CREATE TABLE " + TB_GOIMON + " ( " + TB_GOIMON_MAGOIMON + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + TB_GOIMON_MABAN + " INTEGER, " + TB_GOIMON_MANV + " INTEGER, " + TB_GOIMON_NGAYGOI + " TEXT, "
+                + TB_GOIMON_MABAN + " INTEGER, " + TB_GOIMON_MANGUOIDUNG + " INTEGER, " + TB_GOIMON_NGAYGOI + " TEXT, "
                 + TB_GOIMON_TINHTRANG + " TEXT )";
 
         String tbCHITIETGOIMON = "CREATE TABLE " + TB_CHITIETGOIMON + " ( " + TB_CHITIETGOIMON_MAGOIMON + " INTEGER, "

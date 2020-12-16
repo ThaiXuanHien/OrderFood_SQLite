@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.orderfood_sqlite">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,13 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderFood_SQLite">
         <activity
-            android:label="@string/themLoaiThucDon"
             android:name=".ThemLoaiThucDonActivity"
+            android:label="@string/themLoaiThucDon"
             android:theme="@style/popUpActivity"></activity>
         <activity android:name=".ThemThucDonActivity" />
         <activity
-            android:label="@string/themBanAn"
             android:name=".PopUpThemBanAnActivity"
+            android:label="@string/themBanAn"
             android:theme="@style/popUpActivity" />
         <activity android:name=".DangNhap_DangKyActivity">
             <intent-filter>

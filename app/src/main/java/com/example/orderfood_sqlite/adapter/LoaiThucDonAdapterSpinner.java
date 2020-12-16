@@ -12,14 +12,14 @@ import com.example.orderfood_sqlite.dto.LoaiThucDonDTO;
 
 import java.util.List;
 
-public class LoaiThucDonAdapter extends BaseAdapter {
+public class LoaiThucDonAdapterSpinner extends BaseAdapter {
 
     Context context;
     int layout;
     List<LoaiThucDonDTO> loaiThucDonDTOList;
     ViewHolderLoaiThucDon viewHolderLoaiThucDon;
 
-    public LoaiThucDonAdapter(Context context, int layout, List<LoaiThucDonDTO> loaiThucDonDTOList) {
+    public LoaiThucDonAdapterSpinner(Context context, int layout, List<LoaiThucDonDTO> loaiThucDonDTOList) {
         this.context = context;
         this.layout = layout;
         this.loaiThucDonDTOList = loaiThucDonDTOList;

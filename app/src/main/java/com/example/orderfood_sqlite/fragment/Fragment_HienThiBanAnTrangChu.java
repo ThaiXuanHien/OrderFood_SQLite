@@ -57,7 +57,6 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
 
     private void refreshBanAn() {
         banAnList = banAnDAO.LayTatCaBanAn();
-
         banAnAdapter = new BanAnAdapter(getContext(), R.layout.item_banan, banAnList);
         gvBanAn.setAdapter(banAnAdapter);
         banAnAdapter.notifyDataSetChanged();
@@ -94,7 +93,6 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
                 boolean kiemTra = intent.getBooleanExtra("themBanAn", false);
                 if (kiemTra) {
                     refreshBanAn();
-
                     Toast.makeText(getContext(), "Thêm bàn ăn thành công", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getContext(), "Thêm bàn ăn thất bại", Toast.LENGTH_SHORT).show();

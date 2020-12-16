@@ -32,19 +32,19 @@ public class NguoiDungDAO {
         return kiemTra;
     }
 
-    public boolean KiemTraDangNhap(String tenDangNhap, String matKhau) {
-        String query = "SELECT * FROM " + CreateDatabase.TB_NGUOIDUNG + " WHERE " + CreateDatabase.TB_NGUOIDUNG_TAIKHOAN + " = '" + tenDangNhap
+    public int kiemTraDangNhap(String taiKhoan, String matKhau){
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_NGUOIDUNG + " WHERE " + CreateDatabase.TB_NGUOIDUNG_TAIKHOAN + " = '" + taiKhoan
                 + "' AND " + CreateDatabase.TB_NGUOIDUNG_MATKHAU + " = '" + matKhau + "'";
 
-
-        Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-
-        if (cursor.getCount() != 0) {
-            return true;
-        } else {
-            return false;
+        int maNguoiDung = 0;
+        Cursor cursor = sqLiteDatabase.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+            maNguoiDung = cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NGUOIDUNG_MANGUOIDUNG));
+            cursor.moveToNext();
         }
 
-
+        return maNguoiDung;
     }
+
 }

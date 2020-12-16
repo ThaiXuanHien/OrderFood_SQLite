@@ -49,4 +49,18 @@ public class LoaiThucDonDAO {
 
         return loaiMonAnDTOs;
     }
+
+    public String layHinhLoaiThucDon(int maLoaiThucDon) {
+        String hinhAnh = "";
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_MONAN + " WHERE " + CreateDatabase.TB_MONAN_MALOAI + " = '" + maLoaiThucDon + "' "
+                + " AND " + CreateDatabase.TB_MONAN_HINHANH + " != '' ORDER BY " + CreateDatabase.TB_MONAN_MAMON + " LIMIT 1";
+        Cursor cursor = database.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            hinhAnh = cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_HINHANH));
+            cursor.moveToNext();
+        }
+
+        return hinhAnh;
+    }
 }

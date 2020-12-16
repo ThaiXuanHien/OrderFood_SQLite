@@ -32,12 +32,12 @@ public class BanAnDAO {
         }
     }
 
-    public List<BanAnDTO> LayTatCaBanAn(){
+    public List<BanAnDTO> LayTatCaBanAn() {
         List<BanAnDTO> banAnDTOList = new ArrayList<BanAnDTO>();
         String truyVan = "SELECT * FROM " + CreateDatabase.TB_BANAN;
-        Cursor cursor = database.rawQuery(truyVan,null);
+        Cursor cursor = database.rawQuery(truyVan, null);
         cursor.moveToFirst();
-        while(!cursor.isAfterLast()){
+        while (!cursor.isAfterLast()) {
             BanAnDTO banAnDTO = new BanAnDTO();
             banAnDTO.setMaBanAn(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_BANAN_MABAN)));
             banAnDTO.setTenBanAn(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_BANAN_TENBAN)));
@@ -46,5 +46,33 @@ public class BanAnDAO {
             cursor.moveToNext();
         }
         return banAnDTOList;
+    }
+
+    public String LayTinhTrangBanTheoMa(int maban) {
+        String tinhTrang = "";
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_BANAN + " WHERE " + CreateDatabase.TB_BANAN_MABAN + " = '" + maban + "'";
+        Cursor cursor = database.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            tinhTrang = cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_BANAN_TINHTRANG));
+
+            cursor.moveToNext();
+        }
+
+        return tinhTrang;
+    }
+
+    public boolean capNhatTinhTrangBanAn(int maBan, String tinhTrang) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CreateDatabase.TB_BANAN_TINHTRANG, tinhTrang);
+
+        int kiemTra = database.update(CreateDatabase.TB_BANAN, contentValues, CreateDatabase.TB_BANAN_MABAN + " = '" + maBan + "'", null);
+
+        if (kiemTra != 0) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }

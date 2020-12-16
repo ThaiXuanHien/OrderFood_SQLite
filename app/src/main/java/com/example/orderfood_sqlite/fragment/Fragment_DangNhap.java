@@ -19,14 +19,15 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class Fragment_DangNhap extends Fragment {
 
-    TextInputLayout inputLayoutTaiKhoan,inputLayoutMatKhau;
+    TextInputLayout inputLayoutTaiKhoan, inputLayoutMatKhau;
     Button btnLogin;
     NguoiDungDAO nguoiDungDAO;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_dangnhap,container,false);
+        View view = inflater.inflate(R.layout.fragment_dangnhap, container, false);
 
         inputLayoutTaiKhoan = view.findViewById(R.id.inputLayoutTaiKhoan);
         inputLayoutMatKhau = view.findViewById(R.id.inputLayoutMatKhau);
@@ -37,15 +38,15 @@ public class Fragment_DangNhap extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean kiemTra = nguoiDungDAO.KiemTraDangNhap(inputLayoutTaiKhoan.getEditText().getText().toString().trim(),
+                int maNguoiDung = nguoiDungDAO.kiemTraDangNhap(inputLayoutTaiKhoan.getEditText().getText().toString().trim(),
                         inputLayoutMatKhau.getEditText().getText().toString().trim());
-                if(kiemTra){
+                if (maNguoiDung != 0) {
                     Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), MainActivity.class);
-                    intent.putExtra("taiKhoan",inputLayoutTaiKhoan.getEditText().getText().toString().trim());
+                    intent.putExtra("taiKhoan", inputLayoutTaiKhoan.getEditText().getText().toString().trim());
+                    intent.putExtra("maNguoidung",maNguoiDung);
                     startActivity(intent);
-                }
-                else {
+                } else {
                     Toast.makeText(getActivity(), "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show();
                 }
             }
