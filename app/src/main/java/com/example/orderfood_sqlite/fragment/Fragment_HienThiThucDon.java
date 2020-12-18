@@ -70,7 +70,7 @@ public class Fragment_HienThiThucDon extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("maloai", maLoai);
-                //bundle.putInt("maban",maban);
+                bundle.putInt("maban",maBan);
                 thucDonFragment.setArguments(bundle);
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();

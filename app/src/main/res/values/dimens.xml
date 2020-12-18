@@ -4,7 +4,7 @@
     <dimen name="size5dp">5dp</dimen>
     <dimen name="size20sp">20sp</dimen>
     <dimen name="size150dp">150dp</dimen>
-    <dimen name="size40dp">40sp</dimen>
+    <dimen name="size40sp">40sp</dimen>
     <dimen name="size10dp">10dp</dimen>
     <dimen name="sizeBorderTextInputLayout">2dp</dimen>
     <dimen name="size30dp">30dp</dimen>
@@ -14,5 +14,6 @@
     <dimen name="size50dp">50dp</dimen>
     <dimen name="size250dp">250dp</dimen>
     <dimen name="size18sp">18sp</dimen>
+    <dimen name="size40dp">40dp</dimen>
 
 </resources>

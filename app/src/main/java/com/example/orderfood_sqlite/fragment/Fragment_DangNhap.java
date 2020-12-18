@@ -41,10 +41,10 @@ public class Fragment_DangNhap extends Fragment {
                 int maNguoiDung = nguoiDungDAO.kiemTraDangNhap(inputLayoutTaiKhoan.getEditText().getText().toString().trim(),
                         inputLayoutMatKhau.getEditText().getText().toString().trim());
                 if (maNguoiDung != 0) {
-                    Toast.makeText(getActivity(), "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Đăng nhập thành công " + maNguoiDung, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.putExtra("taiKhoan", inputLayoutTaiKhoan.getEditText().getText().toString().trim());
-                    intent.putExtra("maNguoidung",maNguoiDung);
+                    intent.putExtra("maNguoiDung",maNguoiDung);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show();

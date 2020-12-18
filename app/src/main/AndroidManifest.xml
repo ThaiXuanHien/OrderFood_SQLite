@@ -12,10 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OrderFood_SQLite">
+        <activity android:name=".ThanhToanActivity"></activity>
+        <activity
+            android:name=".PopUpSoLuongActivity"
+            android:label="@string/soLuong"
+            android:theme="@style/popUpActivity" />
         <activity
             android:name=".ThemLoaiThucDonActivity"
             android:label="@string/themLoaiThucDon"
-            android:theme="@style/popUpActivity"></activity>
+            android:theme="@style/popUpActivity" />
         <activity android:name=".ThemThucDonActivity" />
         <activity
             android:name=".PopUpThemBanAnActivity"

@@ -1,11 +1,14 @@
 package com.example.orderfood_sqlite.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +19,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.orderfood_sqlite.MainActivity;
 import com.example.orderfood_sqlite.R;
+import com.example.orderfood_sqlite.ThanhToanActivity;
 import com.example.orderfood_sqlite.dao.BanAnDAO;
 import com.example.orderfood_sqlite.dao.GoiMonDAO;
 import com.example.orderfood_sqlite.dto.BanAnDTO;
@@ -59,6 +63,8 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
     public long getItemId(int position) {
         return banAnList.get(position).getMaBanAn();
     }
+
+
 
 
     public class ViewHolderBanAn {
@@ -105,6 +111,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
 
         viewHolderBanAn.imgBanAn.setOnClickListener(this);
         viewHolderBanAn.imgGoiMon.setOnClickListener(this);
+        viewHolderBanAn.imgThanhToan.setOnClickListener(this);
 
         return view;
     }
@@ -141,7 +148,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
 
                 Intent dataIntentTrangChu = ((MainActivity) context).getIntent();
                 int maNguoiDung = dataIntentTrangChu.getIntExtra("maNguoiDung", 0);
-
+                Toast.makeText(context, "" + maNguoiDung, Toast.LENGTH_SHORT).show();
                 String tinhTrang = banAnDAO.LayTinhTrangBanTheoMa(maBanAn);
                 if (tinhTrang.equals("false")) {
 
@@ -159,7 +166,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
                     long kiemTra = goiMonDAO.themGoiMonAn(goiMonDTO);
                     banAnDAO.capNhatTinhTrangBanAn(maBanAn, "true");
                     if (kiemTra == 0) {
-                        Toast.makeText(context, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "thất bại", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -175,6 +182,11 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
                 transaction.replace(R.id.content, fragment_hienThiThucDon).addToBackStack("hienthibanan");
                 transaction.commit();
 
+                break;
+            case R.id.imgThanhToanItemBanAn:
+                Intent iThanhToan = new Intent(context, ThanhToanActivity.class);
+                iThanhToan.putExtra("maban", maBanAn);
+                context.startActivity(iThanhToan);
                 break;
         }
     }

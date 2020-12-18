@@ -16,7 +16,7 @@
         android:layout_margin="@dimen/size10dp"
         android:text="@string/themThucDon"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/size40dp"
+        android:textSize="@dimen/size40sp"
         android:textStyle="bold">
 
     </TextView>

@@ -75,4 +75,28 @@ public class BanAnDAO {
         }
 
     }
+
+    public boolean capNhatLaiTenBan(int maBan, String tenBan) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CreateDatabase.TB_BANAN_TENBAN, tenBan);
+
+        long kiemtra = database.update(CreateDatabase.TB_BANAN, contentValues, CreateDatabase.TB_BANAN_MABAN + " = '" + maBan + "'", null);
+
+        if (kiemtra != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean xoaBanAn(int maBan) {
+
+        long kiemTra = database.delete(CreateDatabase.TB_BANAN, CreateDatabase.TB_BANAN_MABAN + " = " + maBan, null);
+        if (kiemTra != 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

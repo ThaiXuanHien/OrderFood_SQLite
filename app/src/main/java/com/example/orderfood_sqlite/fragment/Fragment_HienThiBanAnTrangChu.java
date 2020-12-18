@@ -1,16 +1,16 @@
 package com.example.orderfood_sqlite.fragment;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -43,14 +43,14 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_hienthibanan_trangchu, container, false);
         setHasOptionsMenu(true);
-        ((MainActivity)getActivity()).getSupportActionBar().setTitle(R.string.trangChu);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.trangChu);
 
         gvBanAn = view.findViewById(R.id.gvBanAn);
 
-
-
         banAnDAO = new BanAnDAO(getContext());
         refreshBanAn();
+
+        registerForContextMenu(gvBanAn);
 
         return view;
     }
@@ -60,6 +60,46 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
         banAnAdapter = new BanAnAdapter(getContext(), R.layout.item_banan, banAnList);
         gvBanAn.setAdapter(banAnAdapter);
         banAnAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.context_menu_popup, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        int viTri = info.position;
+        int maBan = banAnList.get(viTri).getMaBanAn();
+
+        switch (id) {
+            case R.id.item_sua:
+
+                Intent intent = new Intent(getContext(), PopUpThemBanAnActivity.class);
+                intent.putExtra("maban", maBan);
+                intent.putExtra("mode", true);
+                intent.putExtra("tenBan", banAnList.get(viTri).getTenBanAn());
+                Toast.makeText(getContext(), banAnList.get(viTri).getTenBanAn(), Toast.LENGTH_SHORT).show();
+                startActivityForResult(intent, REQUEST_CODE_THEMBA);
+                break;
+            case R.id.item_xoa:
+                boolean kiemTra = banAnDAO.xoaBanAn(maBan);
+                if (kiemTra) {
+                    refreshBanAn();
+                    Toast.makeText(getActivity(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Xóa thất bại", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -78,6 +118,7 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
         switch (id) {
             case R.id.item_menu_toolbar_themBanAn:
                 Intent intent = new Intent(getContext(), PopUpThemBanAnActivity.class);
+                intent.putExtra("mode", false);
                 startActivityForResult(intent, REQUEST_CODE_THEMBA);
                 break;
         }
@@ -90,14 +131,16 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
         if (requestCode == REQUEST_CODE_THEMBA) {
             if (resultCode == Activity.RESULT_OK) {
                 Intent intent = data;
-                boolean kiemTra = intent.getBooleanExtra("themBanAn", false);
+                boolean kiemTra = intent.getBooleanExtra("LuuBanAn", false);
+                System.out.println("them");
                 if (kiemTra) {
                     refreshBanAn();
-                    Toast.makeText(getContext(), "Thêm bàn ăn thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Lưu bàn ăn thành công", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), "Thêm bàn ăn thất bại", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Lưu bàn ăn thất bại", Toast.LENGTH_SHORT).show();
                 }
             }
         }
+
     }
 }

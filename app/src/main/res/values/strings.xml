@@ -7,4 +7,5 @@
     <string name="trangChu">Trang chủ</string>
     <string name="thucDon">Thực đơn</string>
     <string name="themLoaiThucDon">Thêm loại thực đơn</string>
+    <string name="soLuong">Số lượng</string>
 </resources>
