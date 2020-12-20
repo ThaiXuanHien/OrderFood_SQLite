@@ -92,7 +92,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnHuyThanhToan:
 
 
-                //finish();
+                finish();
                 break;
         }
     }

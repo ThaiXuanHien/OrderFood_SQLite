@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiBanAnTrangChu;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiThucDon;
+import com.example.orderfood_sqlite.fragment.Fragment_NguoiDung;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView txtTenNguoiDungDrawer;
 
     FragmentManager fragmentManager;
-    FragmentTransaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,18 +81,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         switch (id) {
             case R.id.item_trangChu:
-                transaction = fragmentManager.beginTransaction();
+                FragmentTransaction transactionTrangChu = fragmentManager.beginTransaction();
                 Fragment_HienThiBanAnTrangChu fragment_hienThiBanAnTrangChu = new Fragment_HienThiBanAnTrangChu();
-                transaction.replace(R.id.content, fragment_hienThiBanAnTrangChu);
-                transaction.commit();
+                transactionTrangChu.replace(R.id.content, fragment_hienThiBanAnTrangChu);
+                transactionTrangChu.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 break;
             case R.id.item_thucDon:
-                transaction = fragmentManager.beginTransaction();
+                FragmentTransaction transactionThucDon = fragmentManager.beginTransaction();
                 Fragment_HienThiThucDon fragment_hienThiThucDon = new Fragment_HienThiThucDon();
-                transaction.replace(R.id.content, fragment_hienThiThucDon);
-                transaction.commit();
+                transactionThucDon.replace(R.id.content, fragment_hienThiThucDon);
+                transactionThucDon.commit();
+                item.setChecked(true);
+                drawerLayout.closeDrawers();
+                break;
+            case R.id.item_nguoiDung:
+                FragmentTransaction transactionNguoiDung = fragmentManager.beginTransaction();
+                Fragment_NguoiDung fragment_nguoiDung = new Fragment_NguoiDung();
+                transactionNguoiDung.replace(R.id.content, fragment_nguoiDung);
+                transactionNguoiDung.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 break;

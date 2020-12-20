@@ -8,4 +8,5 @@
     <string name="thucDon">Thực đơn</string>
     <string name="themLoaiThucDon">Thêm loại thực đơn</string>
     <string name="soLuong">Số lượng</string>
+    <string name="themNguoiDung">Thêm người dùng</string>
 </resources>

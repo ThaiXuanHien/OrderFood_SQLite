@@ -6,4 +6,8 @@
     <item
         android:id="@+id/item_menu_toolbar_themThucDon"
         android:title="@string/themThucDon" />
+
+    <item
+        android:id="@+id/item_menu_toolbar_themNguoiDung"
+        android:title="@string/themNguoiDung" />
 </menu>

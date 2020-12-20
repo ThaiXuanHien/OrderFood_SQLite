@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,13 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
 
     TextInputLayout inputLayoutHoTen, inputLayoutTaiKhoanDangKy, inputLayoutSDT, inputLayoutMatkhauDangKy, inputLayoutNhapLaiMK;
     RadioGroup rdgGioiTinh;
+    TextView txtTitleDangKy;
     Button btnRegister;
+
+    RadioButton rdNam, rdNu;
     String gioiTinh = "";
     NguoiDungDAO nguoiDungDAO;
+    int maNguoiDung = 0;
 
     @Nullable
     @Override
@@ -35,6 +40,31 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         anhXa(view);
         btnRegister.setOnClickListener(this);
         nguoiDungDAO = new NguoiDungDAO(getContext());
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            maNguoiDung = bundle.getInt("maNguoiDung", 0);
+
+            if (maNguoiDung != 0) {
+                txtTitleDangKy.setText("Cập nhật \nngười dùng");
+                txtTitleDangKy.setTextSize(30);
+                btnRegister.setText("Lưu");
+
+                NguoiDungDTO nguoiDungDTO = nguoiDungDAO.layDanhSachNguoiDungTheoMa(maNguoiDung);
+                inputLayoutHoTen.getEditText().setText(nguoiDungDTO.getHoTen());
+                inputLayoutTaiKhoanDangKy.getEditText().setText(nguoiDungDTO.getTaiKhoan());
+                inputLayoutMatkhauDangKy.getEditText().setText(nguoiDungDTO.getMatKhau());
+                inputLayoutSDT.getEditText().setText(nguoiDungDTO.getSdt());
+                if (nguoiDungDTO.getGioiTinh().equals("Nam")) {
+                    rdNam.setChecked(true);
+                } else {
+                    rdNu.setChecked(true);
+                }
+            }
+
+        }
+
+
         return view;
     }
 
@@ -46,11 +76,67 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         inputLayoutNhapLaiMK = view.findViewById(R.id.inputLayoutNhapLaiMK);
         rdgGioiTinh = view.findViewById(R.id.rdgGioiTinh);
         btnRegister = view.findViewById(R.id.btnRegister);
+        txtTitleDangKy = view.findViewById(R.id.titleDangKy);
+        rdNam = view.findViewById(R.id.rdbNam);
+        rdNu = view.findViewById(R.id.rdbNu);
 
 
     }
 
+    public void themNguoiDung() {
+        int idGioiTinh = rdgGioiTinh.getCheckedRadioButtonId();
 
+        switch (idGioiTinh) {
+            case R.id.rdbNam:
+                gioiTinh = "Nam";
+                break;
+            case R.id.rdbNu:
+                gioiTinh = "Nữ";
+                break;
+        }
+        NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
+        nguoiDungDTO.setTaiKhoan(inputLayoutTaiKhoanDangKy.getEditText().getText().toString().trim());
+        nguoiDungDTO.setMatKhau(inputLayoutMatkhauDangKy.getEditText().getText().toString().trim());
+        nguoiDungDTO.setHoTen(inputLayoutHoTen.getEditText().getText().toString().trim());
+        nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
+        nguoiDungDTO.setGioiTinh(gioiTinh);
+        //nguoiDungDTO.setMaQuyen(1);
+        long kiemTra = nguoiDungDAO.themNguoiDung(nguoiDungDTO);
+        System.out.println(gioiTinh);
+        if (kiemTra != 0) {
+            Toast.makeText(getContext(), "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Thêm người dùng thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void capNhatNguoiDung() {
+        int idGioiTinh = rdgGioiTinh.getCheckedRadioButtonId();
+
+        switch (idGioiTinh) {
+            case R.id.rdbNam:
+                gioiTinh = "Nam";
+                break;
+            case R.id.rdbNu:
+                gioiTinh = "Nữ";
+                break;
+        }
+        NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
+        nguoiDungDTO.setTaiKhoan(inputLayoutTaiKhoanDangKy.getEditText().getText().toString().trim());
+        nguoiDungDTO.setMatKhau(inputLayoutMatkhauDangKy.getEditText().getText().toString().trim());
+        nguoiDungDTO.setHoTen(inputLayoutHoTen.getEditText().getText().toString().trim());
+        nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
+        nguoiDungDTO.setGioiTinh(gioiTinh);
+        nguoiDungDTO.setMaNguoiDung(maNguoiDung);
+        //nguoiDungDTO.setMaQuyen(1);
+        boolean kiemTra = nguoiDungDAO.capNhatNguoiDung(nguoiDungDTO);
+
+        if (kiemTra) {
+            Toast.makeText(getContext(), "Cập nhật người dùng thành công", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "Cập nhật người dùng thất bại", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     public void onClick(View v) {
@@ -61,31 +147,36 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
                         !validateHoTen() | !validateSDT()) {
                     return;
                 } else {
-                    int idGioiTinh = rdgGioiTinh.getCheckedRadioButtonId();
+                    if (maNguoiDung != 0) {
+                        capNhatNguoiDung();
+                    } else {
+                        themNguoiDung();
+                    }
 
-                    switch (idGioiTinh) {
-                        case R.id.rdbNam:
-                            gioiTinh = "Nam";
-                            break;
-                        case R.id.rdbNu:
-                            gioiTinh = "Nữ";
-                            break;
-                    }
-                    NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
-                    nguoiDungDTO.setTaiKhoan(inputLayoutTaiKhoanDangKy.getEditText().getText().toString().trim());
-                    nguoiDungDTO.setMatKhau(inputLayoutMatkhauDangKy.getEditText().getText().toString().trim());
-                    nguoiDungDTO.setHoTen(inputLayoutHoTen.getEditText().getText().toString().trim());
-                    nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
-                    nguoiDungDTO.setGioiTinh(gioiTinh);
-                    //nguoiDungDTO.setMaQuyen(1);
-                    long kiemTra = nguoiDungDAO.themNguoiDung(nguoiDungDTO);
-                    System.out.println(gioiTinh);
-                    if (kiemTra != 0) {
-                        Toast.makeText(getContext(), "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(getContext(), "Thêm người dùng thất bại", Toast.LENGTH_SHORT).show();
-                    }
+//                    int idGioiTinh = rdgGioiTinh.getCheckedRadioButtonId();
+//
+//                    switch (idGioiTinh) {
+//                        case R.id.rdbNam:
+//                            gioiTinh = "Nam";
+//                            break;
+//                        case R.id.rdbNu:
+//                            gioiTinh = "Nữ";
+//                            break;
+//                    }
+//                    NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
+//                    nguoiDungDTO.setTaiKhoan(inputLayoutTaiKhoanDangKy.getEditText().getText().toString().trim());
+//                    nguoiDungDTO.setMatKhau(inputLayoutMatkhauDangKy.getEditText().getText().toString().trim());
+//                    nguoiDungDTO.setHoTen(inputLayoutHoTen.getEditText().getText().toString().trim());
+//                    nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
+//                    nguoiDungDTO.setGioiTinh(gioiTinh);
+//                    //nguoiDungDTO.setMaQuyen(1);
+//                    long kiemTra = nguoiDungDAO.themNguoiDung(nguoiDungDTO);
+//                    System.out.println(gioiTinh);
+//                    if (kiemTra != 0) {
+//                        Toast.makeText(getContext(), "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
+//                    } else {
+//                        Toast.makeText(getContext(), "Thêm người dùng thất bại", Toast.LENGTH_SHORT).show();
+//                    }
                 }
                 break;
         }
