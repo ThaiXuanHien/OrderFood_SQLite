@@ -134,7 +134,7 @@
             android:id="@+id/spinner_loaiThucDon"
             android:background="@drawable/bg_spinner"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/size50dp"
             android:layout_margin="@dimen/size5dp"
             android:layout_weight="1">
 
@@ -143,8 +143,8 @@
         <ImageView
             android:id="@+id/imgThemLoaiThucDon"
             android:layout_gravity="center"
-            android:layout_width="@dimen/size40dp"
-            android:layout_height="@dimen/size40dp"
+            android:layout_width="@dimen/size50dp"
+            android:layout_height="@dimen/size50dp"
             android:src="@drawable/ic_add">
 
         </ImageView>

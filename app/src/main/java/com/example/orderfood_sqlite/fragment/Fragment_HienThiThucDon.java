@@ -1,7 +1,9 @@
 package com.example.orderfood_sqlite.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -40,6 +42,9 @@ public class Fragment_HienThiThucDon extends Fragment {
     public static final int REQUEST_THEMTD = 456;
     int maBan = 0;
 
+    int maQuyen = 0;
+    SharedPreferences sharedPreferences;
+
     @Nullable
     @Override
 
@@ -54,6 +59,9 @@ public class Fragment_HienThiThucDon extends Fragment {
         fragmentManager = getActivity().getSupportFragmentManager();
 
         refreshThucDon();
+
+        sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
+        maQuyen = sharedPreferences.getInt("maquyen", 0);
 
         Bundle bDuLieuThucDon = getArguments();
         if (bDuLieuThucDon != null) {
@@ -70,7 +78,7 @@ public class Fragment_HienThiThucDon extends Fragment {
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("maloai", maLoai);
-                bundle.putInt("maban",maBan);
+                bundle.putInt("maban", maBan);
                 thucDonFragment.setArguments(bundle);
 
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -83,8 +91,6 @@ public class Fragment_HienThiThucDon extends Fragment {
         });
 
 
-
-
         return view;
 
     }
@@ -92,9 +98,12 @@ public class Fragment_HienThiThucDon extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        MenuItem menuItem = menu.add(1, R.id.item_menu_toolbar_themThucDon, 1, R.string.themThucDon);
-        menuItem.setIcon(R.drawable.themthucdon);
-        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        if (maQuyen == 1) {
+            MenuItem menuItem = menu.add(1, R.id.item_menu_toolbar_themThucDon, 1, R.string.themThucDon);
+            menuItem.setIcon(R.drawable.themthucdon);
+            menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
+
 
     }
 

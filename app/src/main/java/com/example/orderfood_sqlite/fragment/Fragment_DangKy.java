@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +18,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.orderfood_sqlite.R;
 import com.example.orderfood_sqlite.dao.NguoiDungDAO;
+import com.example.orderfood_sqlite.dao.QuyenDAO;
 import com.example.orderfood_sqlite.dto.NguoiDungDTO;
+import com.example.orderfood_sqlite.dto.QuyenDTO;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Fragment_DangKy extends Fragment implements View.OnClickListener {
 
@@ -25,11 +32,16 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
     RadioGroup rdgGioiTinh;
     TextView txtTitleDangKy;
     Button btnRegister;
-
+    Spinner spinnerQuyen;
     RadioButton rdNam, rdNu;
     String gioiTinh = "";
     NguoiDungDAO nguoiDungDAO;
+    QuyenDAO quyenDAO;
     int maNguoiDung = 0;
+
+    List<String> quyenList;
+    List<QuyenDTO> quyenDTOList;
+    boolean mode;
 
     @Nullable
     @Override
@@ -40,9 +52,30 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         anhXa(view);
         btnRegister.setOnClickListener(this);
         nguoiDungDAO = new NguoiDungDAO(getContext());
+        quyenDAO = new QuyenDAO(getContext());
+
+        /*quyenDAO.themQuyen("Quản lý");
+        quyenDAO.themQuyen("Người dùng");*/
 
         Bundle bundle = getArguments();
         if (bundle != null) {
+
+            mode = bundle.getBoolean("mode");
+
+            spinnerQuyen.setVisibility(View.VISIBLE);
+
+            quyenList = new ArrayList<>();
+            quyenDTOList = quyenDAO.layDanhSachQuyen();
+            for (int i = 0; i < quyenDTOList.size(); i++) {
+                String tenQuyen = quyenDTOList.get(i).getTenQuyen();
+                quyenList.add(tenQuyen);
+            }
+
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, quyenList);
+            spinnerQuyen.setAdapter(arrayAdapter);
+            arrayAdapter.notifyDataSetChanged();
+
+
             maNguoiDung = bundle.getInt("maNguoiDung", 0);
 
             if (maNguoiDung != 0) {
@@ -62,6 +95,13 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
                 }
             }
 
+
+            if (!mode) {
+                txtTitleDangKy.setText("Thêm \nngười dùng");
+                txtTitleDangKy.setTextSize(30);
+                btnRegister.setText("Lưu");
+            }
+
         }
 
 
@@ -79,7 +119,7 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         txtTitleDangKy = view.findViewById(R.id.titleDangKy);
         rdNam = view.findViewById(R.id.rdbNam);
         rdNu = view.findViewById(R.id.rdbNu);
-
+        spinnerQuyen = view.findViewById(R.id.spinnerQuyen);
 
     }
 
@@ -100,9 +140,22 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         nguoiDungDTO.setHoTen(inputLayoutHoTen.getEditText().getText().toString().trim());
         nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
         nguoiDungDTO.setGioiTinh(gioiTinh);
-        //nguoiDungDTO.setMaQuyen(1);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            mode = bundle.getBoolean("mode");
+            if (!mode) {
+                int viTri = spinnerQuyen.getSelectedItemPosition();
+                int maQuyen = quyenDTOList.get(viTri).getMaQuyen();
+                nguoiDungDTO.setMaQuyen(maQuyen);
+            }
+        }
+
+        nguoiDungDTO.setMaQuyen(2);
+
+
         long kiemTra = nguoiDungDAO.themNguoiDung(nguoiDungDTO);
-        System.out.println(gioiTinh);
+
+
         if (kiemTra != 0) {
             Toast.makeText(getContext(), "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
         } else {
@@ -128,7 +181,11 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         nguoiDungDTO.setSdt(inputLayoutSDT.getEditText().getText().toString().trim());
         nguoiDungDTO.setGioiTinh(gioiTinh);
         nguoiDungDTO.setMaNguoiDung(maNguoiDung);
-        //nguoiDungDTO.setMaQuyen(1);
+
+        int viTri = spinnerQuyen.getSelectedItemPosition();
+        int maQuyen = quyenDTOList.get(viTri).getMaQuyen();
+        nguoiDungDTO.setMaQuyen(maQuyen);
+
         boolean kiemTra = nguoiDungDAO.capNhatNguoiDung(nguoiDungDTO);
 
         if (kiemTra) {

@@ -1,7 +1,9 @@
 package com.example.orderfood_sqlite.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -36,6 +38,8 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
     BanAnDAO banAnDAO;
     BanAnAdapter banAnAdapter;
 
+    int maQuyen = 0;
+    SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -50,7 +54,12 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
         banAnDAO = new BanAnDAO(getContext());
         refreshBanAn();
 
-        registerForContextMenu(gvBanAn);
+        sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
+        maQuyen = sharedPreferences.getInt("maquyen", 0);
+        if (maQuyen == 1) {
+            registerForContextMenu(gvBanAn);
+        }
+
 
         return view;
     }
@@ -105,10 +114,12 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
+        if (maQuyen == 1) {
+            MenuItem menuItem = menu.add(1, R.id.item_menu_toolbar_themBanAn, 1, R.string.themBanAn);
+            menuItem.setIcon(R.drawable.thembanan);
+            menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        }
 
-        MenuItem menuItem = menu.add(1, R.id.item_menu_toolbar_themBanAn, 1, R.string.themBanAn);
-        menuItem.setIcon(R.drawable.thembanan);
-        menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
     }
 
     @Override

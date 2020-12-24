@@ -121,6 +121,15 @@
 <!--                </com.google.android.material.textfield.TextInputEditText>-->
 <!--            </com.google.android.material.textfield.TextInputLayout>-->
 
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/spinnerQuyen"
+                android:background="@drawable/bg_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/inputLayoutSDT"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"

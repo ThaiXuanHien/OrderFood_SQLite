@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -65,8 +67,6 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
 
-
-
     public class ViewHolderBanAn {
         ImageView imgBanAn, imgGoiMon, imgThanhToan, imgHideButton;
         TextView txtTenBanAn;
@@ -93,7 +93,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
         if (banAnList.get(position).isDuocChon()) {
             hienThiButton();
         } else {
-            hideButton();
+            hideButton(false);
         }
 
         BanAnDTO banAnDTO = banAnList.get(position);
@@ -112,20 +112,36 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
         viewHolderBanAn.imgBanAn.setOnClickListener(this);
         viewHolderBanAn.imgGoiMon.setOnClickListener(this);
         viewHolderBanAn.imgThanhToan.setOnClickListener(this);
+        viewHolderBanAn.imgHideButton.setOnClickListener(this);
 
         return view;
     }
 
-    private void hideButton() {
+    private void hideButton(boolean hieuUng) {
+        if (hieuUng) {
+            Animation animation = AnimationUtils.loadAnimation(context, R.anim.hide_button_banan);
+            viewHolderBanAn.imgGoiMon.startAnimation(animation);
+            viewHolderBanAn.imgThanhToan.startAnimation(animation);
+            viewHolderBanAn.imgHideButton.startAnimation(animation);
+        }
+
         viewHolderBanAn.imgGoiMon.setVisibility(View.INVISIBLE);
         viewHolderBanAn.imgThanhToan.setVisibility(View.INVISIBLE);
         viewHolderBanAn.imgHideButton.setVisibility(View.INVISIBLE);
+
+
     }
 
     private void hienThiButton() {
         viewHolderBanAn.imgGoiMon.setVisibility(View.VISIBLE);
         viewHolderBanAn.imgThanhToan.setVisibility(View.VISIBLE);
         viewHolderBanAn.imgHideButton.setVisibility(View.VISIBLE);
+
+
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.show_button_banan);
+        viewHolderBanAn.imgGoiMon.startAnimation(animation);
+        viewHolderBanAn.imgThanhToan.startAnimation(animation);
+        viewHolderBanAn.imgHideButton.startAnimation(animation);
     }
 
     @Override
@@ -187,6 +203,12 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
                 Intent iThanhToan = new Intent(context, ThanhToanActivity.class);
                 iThanhToan.putExtra("maban", maBanAn);
                 context.startActivity(iThanhToan);
+                break;
+
+            case R.id.imgHideItemBanAn:
+
+                hideButton(true);
+
                 break;
         }
     }

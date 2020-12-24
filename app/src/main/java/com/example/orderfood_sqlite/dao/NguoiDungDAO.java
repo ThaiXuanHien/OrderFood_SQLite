@@ -28,7 +28,7 @@ public class NguoiDungDAO {
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_HOTEN, nguoiDungDTO.getHoTen());
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_SDT, nguoiDungDTO.getSdt());
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_GIOITINH, nguoiDungDTO.getGioiTinh());
-        //contentValues.put(CreateDatabase.TB_NGUOIDUNG_MAQUYEN, nguoiDungDTO.getMaQuyen());
+        contentValues.put(CreateDatabase.TB_NGUOIDUNG_MAQUYEN, nguoiDungDTO.getMaQuyen());
 
 
         long kiemTra = sqLiteDatabase.insert(CreateDatabase.TB_NGUOIDUNG, null, contentValues);
@@ -48,6 +48,19 @@ public class NguoiDungDAO {
         }
 
         return maNguoiDung;
+    }
+
+    public int layQuyenNhanVien(int maNguoiDung) {
+        int maQuyen = 0;
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_NGUOIDUNG + " WHERE " + CreateDatabase.TB_NGUOIDUNG_MANGUOIDUNG + " = " + maNguoiDung;
+        Cursor cursor = sqLiteDatabase.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            maQuyen = cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_NGUOIDUNG_MAQUYEN));
+            cursor.moveToNext();
+        }
+
+        return maQuyen;
     }
 
     public List<NguoiDungDTO> layDanhSachNguoiDung() {
@@ -98,6 +111,7 @@ public class NguoiDungDAO {
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_HOTEN, nguoiDungDTO.getHoTen());
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_SDT, nguoiDungDTO.getSdt());
         contentValues.put(CreateDatabase.TB_NGUOIDUNG_GIOITINH, nguoiDungDTO.getGioiTinh());
+        contentValues.put(CreateDatabase.TB_NGUOIDUNG_MAQUYEN, nguoiDungDTO.getMaQuyen());
 
         long kiemTra = sqLiteDatabase.update(CreateDatabase.TB_NGUOIDUNG, contentValues, CreateDatabase.TB_NGUOIDUNG_MANGUOIDUNG + " = " + nguoiDungDTO.getMaNguoiDung(), null);
         if (kiemTra != 0) {

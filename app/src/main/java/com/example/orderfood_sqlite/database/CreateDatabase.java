@@ -61,7 +61,7 @@ public class CreateDatabase extends SQLiteOpenHelper {
 
         String tbNGUOIDUNG = "CREATE TABLE " + TB_NGUOIDUNG + " ( " + TB_NGUOIDUNG_MANGUOIDUNG + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TB_NGUOIDUNG_TAIKHOAN + " TEXT, " + TB_NGUOIDUNG_MATKHAU + " TEXT, " + TB_NGUOIDUNG_HOTEN + " TEXT, "
-                + TB_NGUOIDUNG_SDT + " TEXT, " + TB_NGUOIDUNG_GIOITINH + " TEXT" + ")";
+                + TB_NGUOIDUNG_SDT + " TEXT, " + TB_NGUOIDUNG_GIOITINH + " TEXT" + ", " + TB_NGUOIDUNG_MAQUYEN + " INTEGER" + ")";
 
         String tbBANAN = "CREATE TABLE " + TB_BANAN + " ( " + TB_BANAN_MABAN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + TB_BANAN_TENBAN + " TEXT, " + TB_BANAN_TINHTRANG + " TEXT )";

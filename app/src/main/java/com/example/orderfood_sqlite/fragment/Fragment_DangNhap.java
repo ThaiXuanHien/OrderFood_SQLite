@@ -1,6 +1,8 @@
 package com.example.orderfood_sqlite.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,12 +42,23 @@ public class Fragment_DangNhap extends Fragment {
             public void onClick(View v) {
                 int maNguoiDung = nguoiDungDAO.kiemTraDangNhap(inputLayoutTaiKhoan.getEditText().getText().toString().trim(),
                         inputLayoutMatKhau.getEditText().getText().toString().trim());
+
+                int maQuyen = nguoiDungDAO.layQuyenNhanVien(maNguoiDung);
+
                 if (maNguoiDung != 0) {
-                    Toast.makeText(getActivity(), "Đăng nhập thành công " + maNguoiDung, Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("maquyen", maQuyen);
+                    editor.commit();
+
+                    //Toast.makeText(getActivity(), "Đăng nhập thành công " + maNguoiDung, Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getContext(), MainActivity.class);
                     intent.putExtra("taiKhoan", inputLayoutTaiKhoan.getEditText().getText().toString().trim());
-                    intent.putExtra("maNguoiDung",maNguoiDung);
+                    intent.putExtra("maNguoiDung", maNguoiDung);
+                    //getActivity().overridePendingTransition(R.anim.right_to_left_activity, R.anim.left_to_right_activity);
                     startActivity(intent);
+
                 } else {
                     Toast.makeText(getActivity(), "Đăng nhập thất bại ", Toast.LENGTH_SHORT).show();
                 }
