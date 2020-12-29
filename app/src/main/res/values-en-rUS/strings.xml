@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OrderFood_SQLite</string>
+    <string name="themThucDon">Add Food</string>
+    <string name="themBanAn">Add Table</string>
+    <string name="trangChu">Home</string>
+    <string name="thucDon">Menu</string>
+    <string name="dangNhapDangKy">Login / Rgister</string>
+    <string name="dangNhap">Login</string>
+    <string name="dangKy">Register</string>
+    <string name="taiKhoan">Username</string>
+    <string name="matKhau">Password</string>
+    <string name="nhoMK">Remember Password</string>
+    <string name="quenMK">"Forgot Password "</string>
+    <string name="hoTen">Fullname</string>
+    <string name="sdt">Phone number</string>
+    <string name="nam">Male</string>
+    <string name="nu">Female</string>
+    <string name="reMatKhau">Re - Password</string>
+    <string name="banAn">Table</string>
+    <string name="themLoaiThucDon">Add Food Type</string>
+    <string name="themNguoiDung">Add User</string>
+    <string name="goiY">Suggestions</string>
+    <string name="soLuong">Amount</string>
+    <string name="DongY">Agree</string>
+    <string name="TenBanAn">Name Table</string>
+    <string name="Food">Food</string>
+    <string name="gia">Price</string>
+    <string name="tongTien">Total  Money</string>
+    <string name="thanhToan">Payment</string>
+    <string name="huy">Cancel</string>
+    <string name="tenLoaiThucDon">Name Food Type</string>
+    <string name="tenThucDon">Name Food</string>
+</resources>

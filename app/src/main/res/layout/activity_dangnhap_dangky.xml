@@ -15,7 +15,7 @@
 
         <androidx.appcompat.widget.Toolbar
 
-            app:title="Đăng nhập / Đăng ký"
+            app:title="@string/dangNhapDangKy"
             android:id="@+id/toolbarDangNhapDangKy"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"

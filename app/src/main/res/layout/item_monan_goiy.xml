@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_130sdp"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/imgItemGoiY"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_100sdp">
+
+        </ImageView>
+        <TextView
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_margin="@dimen/_5sdp"
+            android:text="Trâu sào khế"
+            android:textStyle="bold"
+            android:textSize="@dimen/_18sdp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:id="@+id/txtTenItemGoiY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_16sdp"
+            android:textColor="@color/color_bg_dongy"
+            android:text="15000 đ"
+            android:id="@+id/txtGiaItemGoiY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

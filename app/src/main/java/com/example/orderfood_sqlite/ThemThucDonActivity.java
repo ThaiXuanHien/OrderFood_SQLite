@@ -2,11 +2,13 @@ package com.example.orderfood_sqlite;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -35,8 +37,17 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
     LoaiThucDonAdapterSpinner loaiThucDonAdapter;
     TextInputLayout inputLayoutTenThucDon, inputLayoutGiaThucDon;
     Button btnDongYThemThucDon, btnHuyThemThucDon;
+    TextView txtTitleThucDon;
+
 
     String duongDanHinh;
+    private int maMonAn;
+    private boolean modeMonAn;
+    private String tenMonAn;
+    private int maLoaiTD;
+    private String gia;
+    private String hinhAnh;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,24 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
         anhXa();
 
         hienThiLoaiThucDonSpinner();
+
+
+        Intent intent = getIntent();
+        maMonAn = intent.getIntExtra("mamonan", 0);
+        maLoaiTD = intent.getIntExtra("loaithucdon", 0);
+        modeMonAn = intent.getBooleanExtra("modeMonAn", false);
+        tenMonAn = intent.getStringExtra("tenMonAn");
+        gia = intent.getStringExtra("gia");
+        hinhAnh = intent.getStringExtra("hinhanh");
+
+        if (modeMonAn) {
+            txtTitleThucDon.setText("Cập nhật thực đơn");
+            inputLayoutTenThucDon.getEditText().setText(tenMonAn);
+            inputLayoutGiaThucDon.getEditText().setText(gia);
+            imgThucDon.setImageURI(Uri.parse(hinhAnh));
+            duongDanHinh = hinhAnh;
+        }
+
         imgThemLoaiThucDon.setOnClickListener(this);
         imgGallery.setOnClickListener(this);
         btnDongYThemThucDon.setOnClickListener(this);
@@ -64,6 +93,7 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
         btnHuyThemThucDon = findViewById(R.id.btnHuyThemThucDon);
         inputLayoutTenThucDon = findViewById(R.id.inputLayoutTenThucDon);
         inputLayoutGiaThucDon = findViewById(R.id.inputLayoutGiaThucDon);
+        txtTitleThucDon = findViewById(R.id.txtTitleThucDon);
     }
 
     public void hienThiLoaiThucDonSpinner() {
@@ -80,6 +110,7 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
         switch (id) {
             case R.id.imgThemLoaiThucDon:
                 Intent intent = new Intent(this, ThemLoaiThucDonActivity.class);
+                intent.putExtra("modeLTD", false);
                 startActivityForResult(intent, REQUEST_CODE_THEMLOAITD);
                 break;
             case R.id.imgGallery:
@@ -95,18 +126,34 @@ public class ThemThucDonActivity extends AppCompatActivity implements View.OnCli
                 String tenThucDon = inputLayoutTenThucDon.getEditText().getText().toString().trim();
                 String giaTien = inputLayoutGiaThucDon.getEditText().getText().toString().trim();
 
-                if (!tenThucDon.isEmpty() && !giaTien.isEmpty() && !tenThucDon.equals("") && duongDanHinh != null) {
-                    ThucDonDTO monAnDTO = new ThucDonDTO();
-                    monAnDTO.setGiaTien(giaTien);
-                    monAnDTO.setHinhAnh(duongDanHinh);
-                    int maLoaiThucDon = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
-                    monAnDTO.setMaLoaiThucDon(maLoaiThucDon);
-                    monAnDTO.setTenThucDon(tenThucDon);
+                if (!tenThucDon.isEmpty() && !giaTien.isEmpty()) {
+                    if (modeMonAn) {
+                        ThucDonDTO monAnDTO = new ThucDonDTO();
+                        monAnDTO.setGiaTien(giaTien);
+                        monAnDTO.setMaThucDon(maMonAn);
+                        monAnDTO.setHinhAnh(duongDanHinh);
+                        int maLoaiThucDon = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
+                        monAnDTO.setMaLoaiThucDon(maLoaiThucDon);
+                        monAnDTO.setTenThucDon(tenThucDon);
+                        Toast.makeText(this, "" + monAnDTO.toString(), Toast.LENGTH_SHORT).show();
+                        boolean kiemTra = thucDonDAO.capNhatLaiTenThucDon(monAnDTO);
+                        Intent iThemTD = new Intent();
+                        iThemTD.putExtra("capNhatMonAn", kiemTra);
+                        setResult(Activity.RESULT_OK, iThemTD);
+                    } else {
+                        ThucDonDTO monAnDTO = new ThucDonDTO();
+                        monAnDTO.setGiaTien(giaTien);
+                        monAnDTO.setHinhAnh(duongDanHinh);
+                        int maLoaiThucDon = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
+                        monAnDTO.setMaLoaiThucDon(maLoaiThucDon);
+                        monAnDTO.setTenThucDon(tenThucDon);
 
-                    boolean kiemTra = thucDonDAO.themThucDon(monAnDTO);
-                    Intent iThemTD = new Intent();
-                    iThemTD.putExtra("themThucDon", kiemTra);
-                    setResult(Activity.RESULT_OK, iThemTD);
+                        boolean kiemTra = thucDonDAO.themThucDon(monAnDTO);
+                        Intent iThemTD = new Intent();
+                        iThemTD.putExtra("themThucDon", kiemTra);
+                        setResult(Activity.RESULT_OK, iThemTD);
+                    }
+
 
 //                    if (kiemTra) {
 //                        Toast.makeText(this, "Thêm thành công", Toast.LENGTH_SHORT).show();

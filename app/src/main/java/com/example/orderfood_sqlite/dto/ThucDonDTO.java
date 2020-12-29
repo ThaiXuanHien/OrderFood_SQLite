@@ -44,4 +44,15 @@ public class ThucDonDTO {
     public void setGiaTien(String giaTien) {
         this.giaTien = giaTien;
     }
+
+    @Override
+    public String toString() {
+        return "ThucDonDTO{" +
+                "maThucDon=" + maThucDon +
+                ", maLoaiThucDon=" + maLoaiThucDon +
+                ", tenThucDon='" + tenThucDon + '\'' +
+                ", giaTien='" + giaTien + '\'' +
+                ", hinhAnh='" + hinhAnh + '\'' +
+                '}';
+    }
 }

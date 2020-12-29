@@ -18,6 +18,10 @@ public class ThemLoaiThucDonActivity extends AppCompatActivity {
     TextInputLayout inputLayoutThemLoaiThucDon;
     LoaiThucDonDAO loaiThucDonDAO;
 
+    int maLoai = 0;
+    String tenLoai = "";
+    boolean mode = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +30,16 @@ public class ThemLoaiThucDonActivity extends AppCompatActivity {
         loaiThucDonDAO = new LoaiThucDonDAO(this);
         inputLayoutThemLoaiThucDon = findViewById(R.id.inputLayoutThemLoaiThucDon);
         btnDongY = findViewById(R.id.btnDongY);
+
+        Intent intent = getIntent();
+        maLoai = intent.getIntExtra("maloai", 0);
+        mode = intent.getBooleanExtra("modeLTD", false);
+        tenLoai = intent.getStringExtra("tenloai");
+
+        if (mode) {
+            setTitle("Cập nhật loại thực đơn");
+            inputLayoutThemLoaiThucDon.getEditText().setText(tenLoai);
+        }
 
         btnDongY.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,12 +51,24 @@ public class ThemLoaiThucDonActivity extends AppCompatActivity {
                 } else {
                     inputLayoutThemLoaiThucDon.setErrorEnabled(false);
                     inputLayoutThemLoaiThucDon.setError(null);
-                    boolean kiemTra = loaiThucDonDAO.ThemLoaiThucDon(tenLoaiThucDon);
+                    boolean kiemTra;
 
-                    Intent intent = new Intent();
-                    intent.putExtra("themLoaiThucDon", kiemTra);
-                    setResult(Activity.RESULT_OK, intent);
-                    finish();
+                    if (mode) {
+
+                        kiemTra = loaiThucDonDAO.capNhatLaiTenLoaiThucDon(maLoai, tenLoaiThucDon);
+                        Intent intent = new Intent();
+                        intent.putExtra("capNhatLoaiThucDon", kiemTra);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    } else {
+                        kiemTra = loaiThucDonDAO.ThemLoaiThucDon(tenLoaiThucDon);
+                        Intent intent = new Intent();
+                        intent.putExtra("themLoaiThucDon", kiemTra);
+                        setResult(Activity.RESULT_OK, intent);
+                        finish();
+                    }
+
+
                 }
             }
         });

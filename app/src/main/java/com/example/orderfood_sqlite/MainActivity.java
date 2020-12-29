@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.orderfood_sqlite.fragment.FragmentGoiY;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiBanAnTrangChu;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiThucDon;
 import com.example.orderfood_sqlite.fragment.Fragment_NguoiDung;
@@ -71,15 +72,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment_HienThiBanAnTrangChu fragment_hienThiBanAnTrangChu = new Fragment_HienThiBanAnTrangChu();
-        transaction.replace(R.id.content, fragment_hienThiBanAnTrangChu);
+
+        FragmentGoiY fragmentGoiY = new FragmentGoiY();
+        transaction.replace(R.id.content, fragmentGoiY);
         transaction.commit();
+
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         switch (id) {
+            case R.id.item_goiY:
+                FragmentTransaction fragmentGoiYTran = fragmentManager.beginTransaction();
+                FragmentGoiY fragmentGoiY = new FragmentGoiY();
+                fragmentGoiYTran.replace(R.id.content, fragmentGoiY);
+                fragmentGoiYTran.commit();
+                item.setChecked(true);
+                drawerLayout.closeDrawers();
+
+                break;
             case R.id.item_trangChu:
                 FragmentTransaction transactionTrangChu = fragmentManager.beginTransaction();
                 Fragment_HienThiBanAnTrangChu fragment_hienThiBanAnTrangChu = new Fragment_HienThiBanAnTrangChu();

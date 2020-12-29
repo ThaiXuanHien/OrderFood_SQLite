@@ -6,41 +6,65 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="@dimen/_20sdp">
 
     <LinearLayout
+        android:layout_gravity="right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imgEng"
+            android:layout_margin="@dimen/_5sdp"
+            android:src="@drawable/en"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/imgVietNam"
+            android:layout_margin="@dimen/_5sdp"
+            android:src="@drawable/vn"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp">
+
+        </ImageView>
+    </LinearLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_margin="@dimen/size10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center"
-            android:fontFamily="@font/bungee"
-            android:text="Đăng nhập"
-            android:textColor="@color/colorBlack"
-            android:textSize="@dimen/size40dp">
-
-        </TextView>
         <ImageView
 
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/size150dp"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
             android:src="@drawable/logo">
 
         </ImageView>
 
+        <TextView
 
-    </LinearLayout>
+            android:id="@+id/titleDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:fontFamily="@font/bungee"
+            android:includeFontPadding="false"
+            android:text="@string/dangNhap"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_30sdp">
+
+        </TextView>
+    </FrameLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/size20dp"
-        android:layout_marginBottom="@dimen/size20dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -48,11 +72,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tài khoản"
+            android:hint="@string/taiKhoan"
 
             android:textColorHint="@color/colorBlack"
             app:boxStrokeColor="@color/colorBlack"
-            app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+            app:boxStrokeWidthFocused="@dimen/_2sdp"
             app:counterEnabled="true"
             app:counterMaxLength="30"
             app:endIconMode="clear_text"
@@ -62,10 +86,10 @@
             app:startIconTint="@color/colorBlack">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:singleLine="true"
                 android:id="@+id/edtTaiKhoanDangNhap"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -73,11 +97,11 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size10dp"
-            android:hint="Mật khẩu"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:hint="@string/matKhau"
             android:textColorHint="@color/colorBlack"
             app:boxStrokeColor="@color/colorBlack"
-            app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+            app:boxStrokeWidthFocused="@dimen/_2sdp"
             app:endIconMode="password_toggle"
             app:endIconTint="@color/colorBlack"
             app:hintTextColor="@color/colorBlack"
@@ -85,11 +109,11 @@
             app:startIconTint="@color/colorBlack">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:singleLine="true"
                 android:id="@+id/edtMatkhauDangNhap"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:singleLine="true"
                 android:textColor="@color/colorBlack" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,13 +121,13 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size10dp">
+            android:layout_marginTop="@dimen/_10sdp">
 
             <CheckBox
                 android:id="@+id/cbNhoMatKhau"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nhớ mật khẩu">
+                android:text="@string/nhoMK">
 
             </CheckBox>
 
@@ -115,7 +139,7 @@
                 android:layout_centerVertical="true"
                 android:background="#00000000"
                 android:elevation="0dp"
-                android:text="Quên mật khẩu?" />
+                android:text="@string/quenMK" />
         </RelativeLayout>
 
 
@@ -125,10 +149,10 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:backgroundTint="@color/colorButtonDangNhapDangKy"
-            android:text="Đăng nhập"
+            android:text="@string/dangNhap"
             android:textColor="#fff" />
 
     </LinearLayout>

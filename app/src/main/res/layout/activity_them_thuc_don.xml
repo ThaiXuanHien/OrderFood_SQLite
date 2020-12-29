@@ -10,13 +10,14 @@
 
 
     <TextView
+        android:id="@+id/txtTitleThucDon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/size10dp"
+        android:layout_margin="@dimen/_10sdp"
         android:text="@string/themThucDon"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/size40sp"
+        android:textSize="@dimen/_30sdp"
         android:textStyle="bold">
 
     </TextView>
@@ -25,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/size10dp">
+        android:padding="@dimen/_10sdp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -38,11 +39,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size5dp"
-                android:hint="Tên thực đơn"
+                android:layout_margin="@dimen/_5sdp"
+                android:hint="@string/tenThucDon"
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack">
@@ -60,13 +61,13 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/size5dp"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Giá"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/gia"
 
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack">
@@ -106,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
                 <ImageView
-                    android:layout_margin="@dimen/size5dp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:src="@drawable/ic_photo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -114,7 +115,7 @@
                 </ImageView>
                 <ImageView
                     android:id="@+id/imgGallery"
-                    android:layout_margin="@dimen/size5dp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:src="@drawable/ic_gallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
@@ -127,15 +128,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/size10dp"
+        android:padding="@dimen/_10sdp"
         android:orientation="horizontal">
 
         <Spinner
+            android:padding="@dimen/_5sdp"
             android:id="@+id/spinner_loaiThucDon"
             android:background="@drawable/bg_spinner"
             android:layout_width="0dp"
-            android:layout_height="@dimen/size50dp"
-            android:layout_margin="@dimen/size5dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
             android:layout_weight="1">
 
         </Spinner>
@@ -143,8 +145,8 @@
         <ImageView
             android:id="@+id/imgThemLoaiThucDon"
             android:layout_gravity="center"
-            android:layout_width="@dimen/size50dp"
-            android:layout_height="@dimen/size50dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:src="@drawable/ic_add">
 
         </ImageView>
@@ -157,11 +159,11 @@
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size10dp"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:id="@+id/btnDongYThemThucDon"
             android:backgroundTint="@color/color_bg_dongy"
-            android:text="Đồng ý"
+            android:text="@string/DongY"
             android:textColor="@color/colorWhite">
 
         </Button>
@@ -170,10 +172,10 @@
             android:id="@+id/btnHuyThemThucDon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/size10dp"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:backgroundTint="@color/color_bg_huy"
-            android:text="Hủy"
+            android:text="@string/huy"
             android:textColor="@color/colorWhite">
 
         </Button>

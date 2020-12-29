@@ -4,10 +4,11 @@
     android:layout_height="wrap_content">
 
     <TextView
+
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/colorBlack"
-        android:textSize="@dimen/size30sp"
+        android:textSize="@dimen/_30sdp"
         android:background="@color/colorWhite"
         android:id="@+id/txtItemSpinnerTenLoaiThucDon"
         android:layout_width="match_parent"

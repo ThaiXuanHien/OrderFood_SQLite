@@ -9,40 +9,41 @@
         android:layout_height="match_parent"
         android:background="#fff"
         android:orientation="vertical"
-        android:padding="@dimen/size20dp">
+        android:padding="@dimen/_20sdp">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
 
-                android:layout_width="@dimen/size150dp"
-                android:layout_height="@dimen/size150dp"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
                 android:src="@drawable/logo">
 
             </ImageView>
 
             <TextView
+
+                android:layout_gravity="right|bottom"
                 android:id="@+id/titleDangKy"
+                android:includeFontPadding="false"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center"
                 android:fontFamily="@font/bungee"
-                android:text="Đăng ký"
+                android:text="@string/dangKy"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/size40dp">
+                android:textSize="@dimen/_30sdp">
 
             </TextView>
-        </LinearLayout>
+        </FrameLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_marginBottom="@dimen/size20dp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -50,11 +51,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Họ tên"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/hoTen"
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack"
@@ -74,11 +75,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Tài khoản"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/taiKhoan"
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:counterEnabled="true"
                 app:counterMaxLength="30"
                 app:endIconMode="clear_text"
@@ -135,11 +136,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Số điện thoại"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/sdt"
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack"
@@ -155,7 +156,7 @@
             </com.google.android.material.textfield.TextInputLayout>
             <RadioGroup
                 android:id="@+id/rdgGioiTinh"
-                android:layout_marginTop="@dimen/size10dp"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -164,7 +165,7 @@
                     android:buttonTint="@color/colorBlack"
                     android:checked="true"
                     android:id="@+id/rdbNam"
-                    android:text="Nam"
+                    android:text="@string/nam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -172,8 +173,8 @@
 
                 <RadioButton
                     android:id="@+id/rdbNu"
-                    android:layout_marginLeft="@dimen/size20dp"
-                    android:text="Nữ"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:text="@string/nu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -185,12 +186,12 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Mật khẩu"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/matKhau"
 
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="password_toggle"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack"
@@ -212,11 +213,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size10dp"
-                android:hint="Nhập lại mật khẩu"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:hint="@string/reMatKhau"
                 android:textColorHint="@color/colorBlack"
                 app:boxStrokeColor="@color/colorBlack"
-                app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+                app:boxStrokeWidthFocused="@dimen/_2sdp"
                 app:endIconMode="password_toggle"
                 app:endIconTint="@color/colorBlack"
                 app:hintTextColor="@color/colorBlack"
@@ -239,7 +240,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorButtonDangNhapDangKy"
-            android:text="Đăng ký"
+            android:text="@string/dangKy"
             android:textColor="@color/white"
             android:textStyle="bold">
 

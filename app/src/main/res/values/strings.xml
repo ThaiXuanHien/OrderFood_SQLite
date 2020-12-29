@@ -5,8 +5,32 @@
     <string name="themThucDon">Thêm thực đơn</string>
     <string name="themBanAn">Thêm bàn ăn</string>
     <string name="trangChu">Trang chủ</string>
+    <string name="banAn">Bàn ăn</string>
     <string name="thucDon">Thực đơn</string>
     <string name="themLoaiThucDon">Thêm loại thực đơn</string>
     <string name="soLuong">Số lượng</string>
     <string name="themNguoiDung">Thêm người dùng</string>
+    <string name="dangNhapDangKy">Đăng nhập / Đăng ký</string>
+    <string name="dangNhap">Đăng nhập</string>
+    <string name="dangKy">Đăng ký</string>
+    <string name="taiKhoan">Tài khoản</string>
+    <string name="matKhau">Mật khẩu</string>
+    <string name="nhoMK">Nhớ mật khẩu</string>
+    <string name="quenMK">Quên mật khẩu?</string>
+    <string name="hoTen">Họ tên</string>
+    <string name="sdt">Số điện thoại</string>
+    <string name="nam">Nam</string>
+    <string name="nu">Nữ</string>
+    <string name="reMatKhau">Nhập lại mật khẩu</string>
+    <string name="goiY">Gợi ý</string>
+    <string name="DongY">Đồng ý</string>
+    <string name="TenBanAn">Tên bàn ăn</string>
+    <string name="Food">Món ăn</string>
+    <string name="gia">Giá tiền</string>
+    <string name="tongTien">Tổng tiền</string>
+    <string name="thanhToan">Thanh toán</string>
+    <string name="huy">Hủy</string>
+    <string name="tenLoaiThucDon">Tên loại thực đơn</string>
+    <string name="tenThucDon">Tên thực đơn</string>
+
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/size10dp"
+    android:padding="@dimen/_10sdp"
     android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
     tools:context=".ThemLoaiThucDonActivity">
 
@@ -26,10 +26,10 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Thêm loại thực đơn"
+        android:hint="@string/tenLoaiThucDon"
         android:textColorHint="@color/colorBlack"
         app:boxStrokeColor="@color/colorBlack"
-        app:boxStrokeWidthFocused="@dimen/sizeBorderTextInputLayout"
+        app:boxStrokeWidthFocused="@dimen/_2sdp"
         app:endIconMode="clear_text"
         app:endIconTint="@color/colorBlack"
         app:hintTextColor="@color/colorBlack"
@@ -45,7 +45,7 @@
 
     <Button
         android:id="@+id/btnDongY"
-        android:text="Đồng ý"
+        android:text="@string/DongY"
         android:backgroundTint="@color/colorButtonDangNhapDangKy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

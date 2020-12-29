@@ -84,14 +84,13 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                 if(kiemTraBanAn && kiemTraGoiMon){
                     Toast.makeText(ThanhToanActivity.this,"Thành toán thành công", Toast.LENGTH_SHORT);
                     hienThiThanhToan();
+                    txtTongTien.setText("");
                 }else{
                     Toast.makeText(ThanhToanActivity.this,"Lỗi", Toast.LENGTH_SHORT);
                 }
 
                 break;
             case R.id.btnHuyThanhToan:
-
-
                 finish();
                 break;
         }

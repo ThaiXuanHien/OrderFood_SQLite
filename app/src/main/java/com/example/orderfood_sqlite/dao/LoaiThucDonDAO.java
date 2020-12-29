@@ -63,4 +63,28 @@ public class LoaiThucDonDAO {
 
         return hinhAnh;
     }
+
+    public boolean capNhatLaiTenLoaiThucDon(int maLoai, String tenLoai) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CreateDatabase.TB_LOAIMONAN_TENLOAI, tenLoai);
+
+        long kiemtra = database.update(CreateDatabase.TB_LOAIMONAN, contentValues, CreateDatabase.TB_LOAIMONAN_MALOAI + " = '" + maLoai + "'", null);
+
+        if (kiemtra != 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean xoaLoaiThucDon(int maLoai) {
+
+        long kiemTra = database.delete(CreateDatabase.TB_LOAIMONAN, CreateDatabase.TB_LOAIMONAN_MALOAI + " = " + maLoai, null);
+        if (kiemTra != 0) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -23,7 +25,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.orderfood_sqlite.MainActivity;
+import com.example.orderfood_sqlite.PopUpThemBanAnActivity;
 import com.example.orderfood_sqlite.R;
+import com.example.orderfood_sqlite.ThemLoaiThucDonActivity;
 import com.example.orderfood_sqlite.ThemThucDonActivity;
 import com.example.orderfood_sqlite.adapter.LoaiThucDonAdapterGridView;
 import com.example.orderfood_sqlite.dao.LoaiThucDonDAO;
@@ -33,13 +37,15 @@ import java.util.List;
 
 public class Fragment_HienThiThucDon extends Fragment {
 
-    GridView gvThucDon;
+    GridView gvLoaiThucDon;
     List<LoaiThucDonDTO> loaiThucDonDTOList;
     LoaiThucDonDAO loaiThucDonDAO;
 
     FragmentManager fragmentManager;
 
     public static final int REQUEST_THEMTD = 456;
+    public static final int REQUEST_THEMLTD = 4567;
+
     int maBan = 0;
 
     int maQuyen = 0;
@@ -54,14 +60,21 @@ public class Fragment_HienThiThucDon extends Fragment {
         setHasOptionsMenu(true);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.thucDon);
 
-        gvThucDon = view.findViewById(R.id.gvThucDon);
+        gvLoaiThucDon = view.findViewById(R.id.gvThucDon);
 
         fragmentManager = getActivity().getSupportFragmentManager();
 
         refreshThucDon();
 
+
+
         sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
         maQuyen = sharedPreferences.getInt("maquyen", 0);
+
+
+        if (maQuyen == 1) {
+            registerForContextMenu(gvLoaiThucDon);
+        }
 
         Bundle bDuLieuThucDon = getArguments();
         if (bDuLieuThucDon != null) {
@@ -69,7 +82,7 @@ public class Fragment_HienThiThucDon extends Fragment {
             Log.d("maban", maBan + "");
         }
 
-        gvThucDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gvLoaiThucDon.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 int maLoai = loaiThucDonDTOList.get(position).getMaLoaiThucDon();
@@ -93,6 +106,46 @@ public class Fragment_HienThiThucDon extends Fragment {
 
         return view;
 
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.context_menu_popup, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+        int viTri = info.position;
+        int maLoai = loaiThucDonDTOList.get(viTri).getMaLoaiThucDon();
+
+        switch (id) {
+            case R.id.item_sua:
+
+                Intent intent = new Intent(getContext(), ThemLoaiThucDonActivity.class);
+                intent.putExtra("maloai", maLoai);
+                intent.putExtra("modeLTD", true);
+                intent.putExtra("tenloai", loaiThucDonDTOList.get(viTri).getTenLoaiThucDon());
+                Toast.makeText(getContext(), loaiThucDonDTOList.get(viTri).getTenLoaiThucDon() + "   " + maLoai, Toast.LENGTH_SHORT).show();
+                startActivityForResult(intent, REQUEST_THEMLTD);
+                break;
+            case R.id.item_xoa:
+                boolean kiemTra = loaiThucDonDAO.xoaLoaiThucDon(maLoai);
+                if (kiemTra) {
+                    refreshThucDon();
+                    Toast.makeText(getActivity(), "Xóa thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "Xóa thất bại", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -136,13 +189,25 @@ public class Fragment_HienThiThucDon extends Fragment {
                 }
             }
         }
+        if (requestCode == REQUEST_THEMLTD) {
+            if (resultCode == Activity.RESULT_OK) {
+                Intent intent = data;
+                boolean kiemTra = intent.getBooleanExtra("capNhatLoaiThucDon", false);
+                if (kiemTra) {
+                    refreshThucDon();
+                    Toast.makeText(getContext(), "Cập nhật thực đơn thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Cập nhật thực đơn thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     private void refreshThucDon() {
         loaiThucDonDAO = new LoaiThucDonDAO(getContext());
         loaiThucDonDTOList = loaiThucDonDAO.LayDanhSachLoaiThucDon();
         LoaiThucDonAdapterGridView adapterGridView = new LoaiThucDonAdapterGridView(getContext(), R.layout.item_loaithucdon, loaiThucDonDTOList);
-        gvThucDon.setAdapter(adapterGridView);
+        gvLoaiThucDon.setAdapter(adapterGridView);
         adapterGridView.notifyDataSetChanged();
     }
 }
