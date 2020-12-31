@@ -32,5 +32,6 @@
     <string name="huy">Hủy</string>
     <string name="tenLoaiThucDon">Tên loại thực đơn</string>
     <string name="tenThucDon">Tên thực đơn</string>
+    <string name="goiYChoBan">Gợi ý cho bạn</string>
 
 </resources>
