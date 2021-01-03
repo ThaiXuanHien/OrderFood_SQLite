@@ -5,7 +5,7 @@
     <string name="themBanAn">Add Table</string>
     <string name="trangChu">Home</string>
     <string name="thucDon">Menu</string>
-    <string name="dangNhapDangKy">Login / Rgister</string>
+    <string name="dangNhapDangKy">Login / Register</string>
     <string name="dangNhap">Login</string>
     <string name="dangKy">Register</string>
     <string name="taiKhoan">Username</string>
@@ -31,4 +31,13 @@
     <string name="huy">Cancel</string>
     <string name="tenLoaiThucDon">Name Food Type</string>
     <string name="tenThucDon">Name Food</string>
+    <string name="Mo">Open</string>
+    <string name="Dong">Close</string>
+    <string name="goiYChoBan">Suggestion</string>
+    <string name="QLNguoiDung">User managerment</string>
+    <string name="thatBai">Fail</string>
+    <string name="themThanhCong">Add Successfully</string>
+    <string name="capNhatThanhCong">Update Successfully</string>
+    <string name="xoaThanhCong">Delete Successfully</string>
+    <string name="capNhatBanAn">Update Table</string>
 </resources>

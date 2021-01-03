@@ -39,7 +39,7 @@ public class PopUpThemBanAnActivity extends AppCompatActivity {
         tenBan = intent.getStringExtra("tenBan");
 
         if (mode) {
-            setTitle("Cập nhật bàn ăn");
+            setTitle(R.string.capNhatBanAn);
             inputLayoutThemBanAn.getEditText().setText(tenBan);
         }
 

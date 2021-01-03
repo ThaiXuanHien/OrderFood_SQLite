@@ -182,7 +182,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
                     long kiemTra = goiMonDAO.themGoiMonAn(goiMonDTO);
                     banAnDAO.capNhatTinhTrangBanAn(maBanAn, "true");
                     if (kiemTra == 0) {
-                        Toast.makeText(context, "thất bại", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, R.string.thatBai, Toast.LENGTH_SHORT).show();
                     }
 
                 }

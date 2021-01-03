@@ -27,6 +27,8 @@ import java.util.List;
 
 public class FragmentGoiY extends Fragment {
 
+    public static final String TAG = FragmentGoiY.class.getName();
+
     RecyclerView rcvGoiY;
     ViewFlipper viewFlipper;
 

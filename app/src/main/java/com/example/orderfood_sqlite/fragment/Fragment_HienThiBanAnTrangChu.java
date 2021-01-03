@@ -33,6 +33,8 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
 
 
     public static final int REQUEST_CODE_THEMBA = 111;
+    public static final String TAG = Fragment_HienThiBanAnTrangChu.class.getName();
+
     GridView gvBanAn;
     List<BanAnDTO> banAnList;
     BanAnDAO banAnDAO;

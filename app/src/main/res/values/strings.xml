@@ -33,5 +33,10 @@
     <string name="tenLoaiThucDon">Tên loại thực đơn</string>
     <string name="tenThucDon">Tên thực đơn</string>
     <string name="goiYChoBan">Gợi ý cho bạn</string>
-
+    <string name="QLNguoiDung">Quản lý người dùng</string>
+    <string name="thatBai">Thất bại</string>
+    <string name="themThanhCong">Thêm thành công</string>
+    <string name="capNhatThanhCong">Cập nhật thành công</string>
+    <string name="xoaThanhCong">Xóa thành công</string>
+    <string name="capNhatBanAn">Cập nhật bàn ăn</string>
 </resources>

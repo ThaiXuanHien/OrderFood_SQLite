@@ -36,6 +36,8 @@ import java.util.List;
 public class ThucDonFragment extends Fragment {
 
     private static final int REQUEST_THEMMONAN = 999;
+    public static final String TAG = ThucDonFragment.class.getName();
+
     GridView gvThucDon;
 
     ThucDonDAO thucDonDAO;

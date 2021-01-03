@@ -157,9 +157,9 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
 
 
         if (kiemTra != 0) {
-            Toast.makeText(getContext(), "Thêm người dùng thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.themThanhCong, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "Thêm người dùng thất bại", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.thatBai, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -189,9 +189,9 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
         boolean kiemTra = nguoiDungDAO.capNhatNguoiDung(nguoiDungDTO);
 
         if (kiemTra) {
-            Toast.makeText(getContext(), "Cập nhật người dùng thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.capNhatThanhCong, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(getContext(), "Cập nhật người dùng thất bại", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.thatBai, Toast.LENGTH_SHORT).show();
         }
     }
 

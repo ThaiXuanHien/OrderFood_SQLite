@@ -44,7 +44,7 @@ public class PopUpSoLuongActivity extends AppCompatActivity implements View.OnCl
 
         boolean kiemTra = goiMonDAO.kiemTraMonAnDaTonTai(maGoiMon,maMonAn);
         if(kiemTra){
-            //tiến hành cập nhật món ăn đã tồn tại
+            //cập nhật món ăn đã tồn tại
             int soLuongCu = goiMonDAO.laySoLuongMonAnTheoMaGoiMon(maGoiMon,maMonAn);
             int soLuongMoi = Integer.parseInt(inputLayoutSoLuong.getEditText().getText().toString());
 

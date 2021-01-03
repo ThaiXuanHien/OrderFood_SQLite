@@ -42,6 +42,8 @@ public class Fragment_DangNhap extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dangnhap, container, false);
 
+        loadLocale();
+
         inputLayoutTaiKhoan = view.findViewById(R.id.inputLayoutTaiKhoan);
         inputLayoutMatKhau = view.findViewById(R.id.inputLayoutMatKhau);
         btnLogin = view.findViewById(R.id.btnLogin);

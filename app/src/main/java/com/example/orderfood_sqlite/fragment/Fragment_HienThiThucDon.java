@@ -45,6 +45,8 @@ public class Fragment_HienThiThucDon extends Fragment {
 
     public static final int REQUEST_THEMTD = 456;
     public static final int REQUEST_THEMLTD = 4567;
+    public static final String TAG = Fragment_HienThiThucDon.class.getName();
+
 
     int maBan = 0;
 

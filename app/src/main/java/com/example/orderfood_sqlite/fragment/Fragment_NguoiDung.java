@@ -1,7 +1,6 @@
 package com.example.orderfood_sqlite.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -21,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.orderfood_sqlite.MainActivity;
 import com.example.orderfood_sqlite.R;
 import com.example.orderfood_sqlite.adapter.NguoiDungAdapter;
 import com.example.orderfood_sqlite.dao.NguoiDungDAO;
@@ -29,6 +29,8 @@ import com.example.orderfood_sqlite.dto.NguoiDungDTO;
 import java.util.List;
 
 public class Fragment_NguoiDung extends Fragment {
+
+    public static final String TAG = Fragment_NguoiDung.class.getName();
 
     ListView lvNguoiDung;
     NguoiDungDAO nguoiDungDAO;
@@ -47,6 +49,9 @@ public class Fragment_NguoiDung extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_nguoidung, container, false);
         setHasOptionsMenu(true);
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.QLNguoiDung);
+
         fragmentManager = getActivity().getSupportFragmentManager();
 
         nguoiDungDAO = new NguoiDungDAO(getActivity());
@@ -100,7 +105,7 @@ public class Fragment_NguoiDung extends Fragment {
                 bundle.putInt("maNguoiDung", maNguoiDung);
                 bundle.putBoolean("mode", true);
                 fragment_dangKy.setArguments(bundle);
-                transactionThemNguoiDung.replace(R.id.content, fragment_dangKy);
+                transactionThemNguoiDung.replace(R.id.content, fragment_dangKy).addToBackStack("capNhatNguoiDung");
                 transactionThemNguoiDung.commit();
                 break;
 
@@ -140,7 +145,7 @@ public class Fragment_NguoiDung extends Fragment {
 
                 bundle.putBoolean("mode", false);
                 fragment_dangKy.setArguments(bundle);
-                transactionThemNguoiDung.replace(R.id.content, fragment_dangKy);
+                transactionThemNguoiDung.replace(R.id.content, fragment_dangKy).addToBackStack("themNguoiDung");
                 transactionThemNguoiDung.commit();
                 break;
         }
