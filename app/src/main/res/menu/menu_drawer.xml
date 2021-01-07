@@ -2,34 +2,34 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:icon="@drawable/goiy"
-            android:title="@string/goiY"
             android:id="@+id/item_goiY"
-            android:checked="true" />
+            android:checked="true"
+            android:icon="@drawable/goiy"
+            android:title="@string/goiY" />
         <item
+            android:id="@+id/item_timKiem"
+            android:icon="@drawable/search_icon"
+            android:title="@string/timKiem" />
+        <item
+            android:id="@+id/item_trangChu"
             android:icon="@drawable/trangchu"
-            android:title="@string/banAn"
-            android:id="@+id/item_trangChu" />
+            android:title="@string/banAn" />
         <item
-            android:icon="@drawable/logo"
-            android:title="@string/thucDon"
             android:id="@+id/item_thucDon"
-            />
+            android:icon="@drawable/logo"
+            android:title="@string/thucDon" />
         <item
-            android:icon="@drawable/nguoidung"
-            android:title="Người dùng"
             android:id="@+id/item_nguoiDung"
-            />
+            android:icon="@drawable/nguoidung"
+            android:title="Người dùng" />
         <item
-            android:icon="@drawable/thongke"
-            android:title="Thống kê"
             android:id="@+id/item_thongKe"
-            />
+            android:icon="@drawable/thongke"
+            android:title="Thống kê" />
         <item
-            android:icon="@drawable/caidat"
-            android:title="Cài đặt"
             android:id="@+id/item_caiDat"
-            />
+            android:icon="@drawable/caidat"
+            android:title="Cài đặt" />
     </group>
 
 </menu>

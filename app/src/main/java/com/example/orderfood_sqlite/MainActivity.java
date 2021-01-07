@@ -20,6 +20,7 @@ import com.example.orderfood_sqlite.fragment.FragmentGoiY;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiBanAnTrangChu;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiThucDon;
 import com.example.orderfood_sqlite.fragment.Fragment_NguoiDung;
+import com.example.orderfood_sqlite.fragment.Fragment_TimKiem;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -89,6 +90,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 FragmentGoiY fragmentGoiY = new FragmentGoiY();
                 fragmentGoiYTran.replace(R.id.content, fragmentGoiY);
                 fragmentGoiYTran.commit();
+                item.setChecked(true);
+                drawerLayout.closeDrawers();
+
+                break;
+            case R.id.item_timKiem:
+                FragmentTransaction fragmentTimKiemTran = fragmentManager.beginTransaction();
+                Fragment_TimKiem fragment_timKiem = new Fragment_TimKiem();
+                fragmentTimKiemTran.replace(R.id.content, fragment_timKiem);
+                fragmentTimKiemTran.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
 

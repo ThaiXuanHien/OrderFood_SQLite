@@ -35,6 +35,27 @@ public class ThucDonDAO {
 
     }
 
+    public List<ThucDonDTO> timKiemMonAn(String tenMonAn) {
+        List<ThucDonDTO> monAnDTOs = new ArrayList<>();
+
+        String truyVan = "SELECT * FROM " + CreateDatabase.TB_MONAN + " WHERE " + CreateDatabase.TB_MONAN_TENMONAN + " LIKE '%" + tenMonAn + "%'";
+        Cursor cursor = database.rawQuery(truyVan, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            ThucDonDTO monAnDTO = new ThucDonDTO();
+            monAnDTO.setHinhAnh(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_HINHANH)) + "");
+            monAnDTO.setTenThucDon(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_TENMONAN)));
+            monAnDTO.setGiaTien(cursor.getString(cursor.getColumnIndex(CreateDatabase.TB_MONAN_GIATIEN)));
+            monAnDTO.setMaThucDon(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_MONAN_MAMON)));
+            monAnDTO.setMaLoaiThucDon(cursor.getInt(cursor.getColumnIndex(CreateDatabase.TB_MONAN_MALOAI)));
+
+            monAnDTOs.add(monAnDTO);
+            cursor.moveToNext();
+        }
+
+        return monAnDTOs;
+    }
+
     public List<ThucDonDTO> LayDanhSachThucDon() {
         List<ThucDonDTO> monAnDTOs = new ArrayList<ThucDonDTO>();
 
