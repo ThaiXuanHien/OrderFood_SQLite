@@ -10,6 +10,7 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+
     <TextView
         android:id="@+id/textviewKhongCoMonAn"
         android:layout_width="match_parent"

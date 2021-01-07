@@ -135,7 +135,5 @@ public class Fragment_TimKiem extends Fragment {
             txtKoCoMonAn.setVisibility(View.VISIBLE);
             rcvTimKiemMonAn.setVisibility(View.GONE);
         }
-
-
     }
 }

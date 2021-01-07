@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     Toolbar toolbar;
     TextView txtTenNguoiDungDrawer;
-
     FragmentManager fragmentManager;
 
     @Override
