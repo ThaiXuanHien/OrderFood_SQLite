@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<dimen name="_20sdp">22.5dp</dimen>
+<dimen name="_5sdp">5.625dp</dimen>
+<!--<dimen name="size20sp">20sp</dimen>-->
+<dimen name="_150sdp">168.75dp</dimen>
+<!--<dimen name="size40sp">40sp</dimen>-->
+<dimen name="_10sdp">11.25dp</dimen>
+<dimen name="_2sdp">2.25dp</dimen>
+<dimen name="_30sdp">33.75dp</dimen>
+<dimen name="_180sdp">202.5dp</dimen>
+<dimen name="_100sdp">112.5dp</dimen>
+<!--<dimen name="size30sp">30sp</dimen>-->
+<dimen name="_50sdp">56.25dp</dimen>
+<dimen name="_250sdp">281.25dp</dimen>
+<dimen name="_18sdp">20.25dp</dimen>
+<!--<dimen name="size18sp">18sp</dimen>-->
+<dimen name="_40sdp">45.0dp</dimen>
+</resources>

@@ -86,7 +86,7 @@
         </LinearLayout>
 
         <LinearLayout
-            
+            android:padding="@dimen/_5sdp"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -101,21 +101,15 @@
 
             </ImageView>
             <LinearLayout
-                android:layout_weight="1"
+
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="0dp">
-                <ImageView
-                    android:layout_margin="@dimen/_5sdp"
-                    android:src="@drawable/ic_photo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                android:layout_height="wrap_content">
 
-                </ImageView>
                 <ImageView
                     android:id="@+id/imgGallery"
-                    android:layout_margin="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:src="@drawable/ic_gallery"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
