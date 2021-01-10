@@ -85,6 +85,7 @@ public class ThanhToanActivity extends AppCompatActivity implements View.OnClick
                     Toast.makeText(ThanhToanActivity.this,"Thành toán thành công", Toast.LENGTH_SHORT);
                     hienThiThanhToan();
                     txtTongTien.setText("");
+
                     finish();
                 }else{
                     Toast.makeText(ThanhToanActivity.this,"Lỗi", Toast.LENGTH_SHORT);

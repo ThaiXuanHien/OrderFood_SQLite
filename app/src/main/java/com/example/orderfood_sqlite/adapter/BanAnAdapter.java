@@ -26,6 +26,7 @@ import com.example.orderfood_sqlite.dao.BanAnDAO;
 import com.example.orderfood_sqlite.dao.GoiMonDAO;
 import com.example.orderfood_sqlite.dto.BanAnDTO;
 import com.example.orderfood_sqlite.dto.GoiMonDTO;
+import com.example.orderfood_sqlite.fragment.Fragment_HienThiBanAnTrangChu;
 import com.example.orderfood_sqlite.fragment.Fragment_HienThiThucDon;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
     BanAnDAO banAnDAO;
     GoiMonDAO goiMonDAO;
     FragmentManager fragmentManager;
+
 
     public BanAnAdapter(Context context, int layout, List<BanAnDTO> banAnList) {
         this.context = context;
@@ -113,6 +115,7 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
         viewHolderBanAn.imgGoiMon.setOnClickListener(this);
         viewHolderBanAn.imgThanhToan.setOnClickListener(this);
         viewHolderBanAn.imgHideButton.setOnClickListener(this);
+
 
         return view;
     }
@@ -212,4 +215,5 @@ public class BanAnAdapter extends BaseAdapter implements View.OnClickListener {
                 break;
         }
     }
+
 }

@@ -29,7 +29,7 @@ import com.example.orderfood_sqlite.dto.BanAnDTO;
 
 import java.util.List;
 
-public class Fragment_HienThiBanAnTrangChu extends Fragment {
+public class Fragment_HienThiBanAnTrangChu extends Fragment{
 
 
     public static final int REQUEST_CODE_THEMBA = 111;
@@ -42,6 +42,7 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
 
     int maQuyen = 0;
     SharedPreferences sharedPreferences;
+
 
     @Nullable
     @Override
@@ -66,7 +67,14 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment {
         return view;
     }
 
-    private void refreshBanAn() {
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        refreshBanAn();
+    }
+
+    public void refreshBanAn() {
         banAnList = banAnDAO.LayTatCaBanAn();
         banAnAdapter = new BanAnAdapter(getContext(), R.layout.item_banan, banAnList);
         gvBanAn.setAdapter(banAnAdapter);
