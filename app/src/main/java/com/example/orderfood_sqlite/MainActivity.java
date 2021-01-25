@@ -8,7 +8,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -126,6 +129,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
                 break;
+            case R.id.item_dangXuat:
+                SharedPreferences loginFirst_Pref = getSharedPreferences("loginFirst", Context.MODE_PRIVATE);
+                Editor editor = loginFirst_Pref.edit();
+                editor.clear();
+                editor.commit();
+                editor.apply();
+                finish();
         }
         return true;
     }

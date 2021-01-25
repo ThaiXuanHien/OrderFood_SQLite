@@ -35,7 +35,8 @@ public class Fragment_DangNhap extends Fragment {
     ImageView imgVietNam, imgEng;
     TextView txtTitleDangNhap;
 
-
+    SharedPreferences loginFirst_Pref;
+    SharedPreferences.Editor editorLoginFirst;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +44,22 @@ public class Fragment_DangNhap extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dangnhap, container, false);
 
         loadLocale();
+
+        loginFirst_Pref = getActivity().getSharedPreferences("loginFirst",Context.MODE_PRIVATE);
+        boolean isFirst = loginFirst_Pref.getBoolean("isFirst",true);
+        Toast.makeText(getActivity(), "" + isFirst, Toast.LENGTH_SHORT).show();
+        editorLoginFirst = loginFirst_Pref.edit();
+        if(isFirst){
+
+            editorLoginFirst.putBoolean("isFirst", false);
+            editorLoginFirst.commit();
+        }
+        else {
+            Intent intent = new Intent(getContext(), MainActivity.class);
+            //getActivity().overridePendingTransition(R.anim.right_to_left_activity, R.anim.left_to_right_activity);
+            startActivity(intent);
+        }
+
 
         inputLayoutTaiKhoan = view.findViewById(R.id.inputLayoutTaiKhoan);
         inputLayoutMatKhau = view.findViewById(R.id.inputLayoutMatKhau);
@@ -80,6 +97,11 @@ public class Fragment_DangNhap extends Fragment {
                 int maQuyen = nguoiDungDAO.layQuyenNhanVien(maNguoiDung);
 
                 if (maNguoiDung != 0) {
+                    Toast.makeText(getActivity(), "" + isFirst, Toast.LENGTH_SHORT).show();
+                    editorLoginFirst.putBoolean("isFirst", false);
+
+                    editorLoginFirst.commit();
+
 
                     SharedPreferences sharedPreferences = getActivity().getSharedPreferences("luuquyen", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();

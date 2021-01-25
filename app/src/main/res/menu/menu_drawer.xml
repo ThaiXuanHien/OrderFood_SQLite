@@ -30,6 +30,10 @@
             android:id="@+id/item_caiDat"
             android:icon="@drawable/caidat"
             android:title="Cài đặt" />
+        <item
+            android:id="@+id/item_dangXuat"
+            android:icon="@drawable/logout_icon"
+            android:title="Đăng xuất" />
     </group>
 
 </menu>
