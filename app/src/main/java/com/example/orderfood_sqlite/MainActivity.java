@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_goiY:
                 FragmentTransaction fragmentGoiYTran = fragmentManager.beginTransaction();
                 FragmentGoiY fragmentGoiY = new FragmentGoiY();
-                fragmentGoiYTran.replace(R.id.content, fragmentGoiY);
+                fragmentGoiYTran.replace(R.id.content, fragmentGoiY).addToBackStack("addGoiY");
                 fragmentGoiYTran.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_timKiem:
                 FragmentTransaction fragmentTimKiemTran = fragmentManager.beginTransaction();
                 Fragment_TimKiem fragment_timKiem = new Fragment_TimKiem();
-                fragmentTimKiemTran.replace(R.id.content, fragment_timKiem);
+                fragmentTimKiemTran.replace(R.id.content, fragment_timKiem).addToBackStack("addTimKiem");
                 fragmentTimKiemTran.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_trangChu:
                 FragmentTransaction transactionTrangChu = fragmentManager.beginTransaction();
                 Fragment_HienThiBanAnTrangChu fragment_hienThiBanAnTrangChu = new Fragment_HienThiBanAnTrangChu();
-                transactionTrangChu.replace(R.id.content, fragment_hienThiBanAnTrangChu);
+                transactionTrangChu.replace(R.id.content, fragment_hienThiBanAnTrangChu).addToBackStack("addBanAnTrangChu");
                 transactionTrangChu.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_thucDon:
                 FragmentTransaction transactionThucDon = fragmentManager.beginTransaction();
                 Fragment_HienThiThucDon fragment_hienThiThucDon = new Fragment_HienThiThucDon();
-                transactionThucDon.replace(R.id.content, fragment_hienThiThucDon);
+                transactionThucDon.replace(R.id.content, fragment_hienThiThucDon).addToBackStack("addLoaiThucDon");
                 transactionThucDon.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.item_nguoiDung:
                 FragmentTransaction transactionNguoiDung = fragmentManager.beginTransaction();
                 Fragment_NguoiDung fragment_nguoiDung = new Fragment_NguoiDung();
-                transactionNguoiDung.replace(R.id.content, fragment_nguoiDung);
+                transactionNguoiDung.replace(R.id.content, fragment_nguoiDung).addToBackStack("addNguoiDung");
                 transactionNguoiDung.commit();
                 item.setChecked(true);
                 drawerLayout.closeDrawers();

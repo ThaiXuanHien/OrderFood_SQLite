@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -70,7 +71,7 @@ public class Fragment_HienThiBanAnTrangChu extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
-
+        Log.d("a","Fragment BanAN OnResume");
         refreshBanAn();
     }
 
