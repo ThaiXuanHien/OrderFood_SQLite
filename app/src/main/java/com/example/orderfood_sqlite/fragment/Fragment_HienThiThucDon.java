@@ -60,7 +60,7 @@ public class Fragment_HienThiThucDon extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_hienthi_thucdon, container, false);
         setHasOptionsMenu(true);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.thucDon);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Loại thực đơn");
 
         gvLoaiThucDon = view.findViewById(R.id.gvThucDon);
 

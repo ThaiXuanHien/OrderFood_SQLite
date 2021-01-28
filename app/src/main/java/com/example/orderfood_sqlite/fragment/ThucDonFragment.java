@@ -23,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.orderfood_sqlite.MainActivity;
 import com.example.orderfood_sqlite.PopUpSoLuongActivity;
 import com.example.orderfood_sqlite.R;
 import com.example.orderfood_sqlite.ThemLoaiThucDonActivity;
@@ -53,6 +54,7 @@ public class ThucDonFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_hienthi_thucdon, container, false);
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Thực đơn");
 
         thucDonDAO = new ThucDonDAO(getContext());
         gvThucDon = view.findViewById(R.id.gvThucDon);

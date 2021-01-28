@@ -190,10 +190,14 @@ public class Fragment_DangKy extends Fragment implements View.OnClickListener {
 
         if (kiemTra) {
             Toast.makeText(getContext(), R.string.capNhatThanhCong, Toast.LENGTH_SHORT).show();
+            getFragmentManager().popBackStack();
+
         } else {
             Toast.makeText(getContext(), R.string.thatBai, Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     @Override
     public void onClick(View v) {

@@ -3,12 +3,10 @@
     <alpha
         android:duration="600"
         android:fromAlpha="0"
-        android:toAlpha="1"
-        />
+        android:toAlpha="1" />
 
     <rotate
         android:duration="600"
         android:fromDegrees="90"
-        android:pivotY="5"
-        />
+        android:pivotY="5" />
 </set>

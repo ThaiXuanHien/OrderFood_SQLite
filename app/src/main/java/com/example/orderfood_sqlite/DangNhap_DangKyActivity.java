@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
@@ -41,4 +43,14 @@ public class DangNhap_DangKyActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        SharedPreferences loginFirst_Pref = getSharedPreferences("loginFirst", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = loginFirst_Pref.edit();
+        editor.clear();
+        editor.commit();
+        editor.apply();
+
+    }
 }

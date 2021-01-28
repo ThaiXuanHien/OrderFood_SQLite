@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -86,57 +87,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Fragment fragment = null;
+
+
         switch (id) {
             case R.id.item_goiY:
-                FragmentTransaction fragmentGoiYTran = fragmentManager.beginTransaction();
-                FragmentGoiY fragmentGoiY = new FragmentGoiY();
-                fragmentGoiYTran.replace(R.id.content, fragmentGoiY).addToBackStack("addGoiY");
-                fragmentGoiYTran.commit();
-                item.setChecked(true);
-                drawerLayout.closeDrawers();
 
+                clearFragment(fragmentManager);
+                fragment = new FragmentGoiY();
+                item.setChecked(true);
                 break;
             case R.id.item_timKiem:
-                FragmentTransaction fragmentTimKiemTran = fragmentManager.beginTransaction();
-                Fragment_TimKiem fragment_timKiem = new Fragment_TimKiem();
-                fragmentTimKiemTran.replace(R.id.content, fragment_timKiem).addToBackStack("addTimKiem");
-                fragmentTimKiemTran.commit();
+                clearFragment(fragmentManager);
+                fragment = new Fragment_TimKiem();
                 item.setChecked(true);
-                drawerLayout.closeDrawers();
-
                 break;
             case R.id.item_trangChu:
-                FragmentTransaction transactionTrangChu = fragmentManager.beginTransaction();
-                Fragment_HienThiBanAnTrangChu fragment_hienThiBanAnTrangChu = new Fragment_HienThiBanAnTrangChu();
-                transactionTrangChu.replace(R.id.content, fragment_hienThiBanAnTrangChu).addToBackStack("addBanAnTrangChu");
-                transactionTrangChu.commit();
+                clearFragment(fragmentManager);
+                fragment = new Fragment_HienThiBanAnTrangChu();
                 item.setChecked(true);
-                drawerLayout.closeDrawers();
                 break;
             case R.id.item_thucDon:
-                FragmentTransaction transactionThucDon = fragmentManager.beginTransaction();
-                Fragment_HienThiThucDon fragment_hienThiThucDon = new Fragment_HienThiThucDon();
-                transactionThucDon.replace(R.id.content, fragment_hienThiThucDon).addToBackStack("addLoaiThucDon");
-                transactionThucDon.commit();
+                clearFragment(fragmentManager);
+                fragment = new Fragment_HienThiThucDon();
                 item.setChecked(true);
-                drawerLayout.closeDrawers();
                 break;
             case R.id.item_nguoiDung:
-                FragmentTransaction transactionNguoiDung = fragmentManager.beginTransaction();
-                Fragment_NguoiDung fragment_nguoiDung = new Fragment_NguoiDung();
-                transactionNguoiDung.replace(R.id.content, fragment_nguoiDung).addToBackStack("addNguoiDung");
-                transactionNguoiDung.commit();
+                clearFragment(fragmentManager);
+                fragment = new Fragment_NguoiDung();
                 item.setChecked(true);
-                drawerLayout.closeDrawers();
                 break;
             case R.id.item_dangXuat:
+
                 SharedPreferences loginFirst_Pref = getSharedPreferences("loginFirst", Context.MODE_PRIVATE);
                 Editor editor = loginFirst_Pref.edit();
                 editor.clear();
                 editor.commit();
                 editor.apply();
                 finish();
+                break;
         }
+
+        fragmentTransaction.replace(R.id.content, fragment);
+        fragmentTransaction.commit();
+        drawerLayout.closeDrawers();
+
         return true;
+    }
+
+    private static void clearFragment(FragmentManager fragmentManager) {
+        while (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStackImmediate();
+        }
     }
 }
