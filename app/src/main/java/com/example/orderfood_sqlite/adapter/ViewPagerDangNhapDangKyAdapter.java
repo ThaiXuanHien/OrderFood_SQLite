@@ -20,6 +20,7 @@ public class ViewPagerDangNhapDangKyAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 Fragment_DangNhap fragmentDangNhap = new Fragment_DangNhap();
+
                 return fragmentDangNhap;
             case 1:
                 Fragment_DangKy fragmentDangKy = new Fragment_DangKy();

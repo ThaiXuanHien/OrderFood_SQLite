@@ -98,26 +98,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 clearFragment(fragmentManager);
                 fragment = new FragmentGoiY();
                 item.setChecked(true);
+
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawers();
+
                 break;
             case R.id.item_timKiem:
                 clearFragment(fragmentManager);
                 fragment = new Fragment_TimKiem();
                 item.setChecked(true);
+
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawers();
+
                 break;
             case R.id.item_trangChu:
                 clearFragment(fragmentManager);
                 fragment = new Fragment_HienThiBanAnTrangChu();
                 item.setChecked(true);
+
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawers();
+
                 break;
             case R.id.item_thucDon:
                 clearFragment(fragmentManager);
                 fragment = new Fragment_HienThiThucDon();
                 item.setChecked(true);
+
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawers();
+
                 break;
             case R.id.item_nguoiDung:
                 clearFragment(fragmentManager);
                 fragment = new Fragment_NguoiDung();
                 item.setChecked(true);
+
+                fragmentTransaction.replace(R.id.content, fragment);
+                fragmentTransaction.commit();
+                drawerLayout.closeDrawers();
+
                 break;
             case R.id.item_dangXuat:
 
@@ -130,9 +155,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        fragmentTransaction.replace(R.id.content, fragment);
-        fragmentTransaction.commit();
-        drawerLayout.closeDrawers();
+
 
         return true;
     }
